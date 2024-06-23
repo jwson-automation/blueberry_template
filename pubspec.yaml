@@ -1,0 +1,59 @@
+name: blueberry_flutter_template
+description: "flutter-template"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  flutter_riverpod: ^2.5.1
+  carousel_slider: ^4.2.1
+  firebase_auth: ^4.19.2
+  cached_network_image: ^3.3.1
+  cloud_firestore: ^4.17.2
+  firebase_core: ^2.30.1
+  firebase_storage: ^11.7.4
+  image_picker: ^1.1.0
+  flutter_rating_bar: ^4.0.1
+  dart_openai: ^5.1.0
+  pinput: ^4.0.0
+  url_launcher: ^6.2.6
+  bootpay: ^4.9.7
+  uuid: ^4.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/600x400/
+    - assets/300x420/
+    - assets/700x150/
+
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
