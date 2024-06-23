@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "180167853383",
-    "project_id": "blueberrytemplate",
-    "storage_bucket": "blueberrytemplate.appspot.com"
+    "project_number": "952947461606",
+    "project_id": "test-123123-a790b",
+    "storage_bucket": "test-123123-a790b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:180167853383:android:52d473a57000cf848cf862",
+        "mobilesdk_app_id": "1:952947461606:android:2961087573d1e1b7ac9a27",
         "android_client_info": {
           "package_name": "com.blueberry.template.blueberry_flutter_template"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCp8hdDk4gJ1_oS1OutGW_coWTYi76XjJs"
+          "current_key": "AIzaSyDzMxRRcgnrOTH4Z9O53HoVQ2NIZ5xGzgw"
         }
       ],
       "services": {
