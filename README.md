@@ -31,8 +31,8 @@ WEB IMAGE RENDERING (https://docs.flutter.dev/development/platform-integration/w
 ## TO DO LIST
 
 - [x] 초기 인원 모집
-- [ ] 팀 빌딩 ( 아키텍쳐와 협업 방향에 대한 회의 )
-- [ ] 멤버들에게 깃헙 프로젝트 오픈
+- [x] 팀 빌딩 ( 아키텍쳐와 협업 방향에 대한 회의 )
+- [x] 멤버들에게 깃헙 프로젝트 오픈
 - [x] 깃헙 이슈 작성 및 할당
 - [ ] 템플릿 1차 완성
 
