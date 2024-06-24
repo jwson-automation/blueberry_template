@@ -5,6 +5,7 @@ import '../pages/admin/AdminPage.dart';
 import '../chat/ChatPage.dart';
 import '../pages/mypage/MyPage.dart';
 import '../pages/shopping/ShoppingPageSample.dart';
+import '../signUp/SignUpPage.dart';
 
 /**
  * TopPage.dart
@@ -25,7 +26,7 @@ class TopPage extends ConsumerWidget {
 
     final List<Widget> _pages = [
       ShoppingPage(),
-      ChatPage(),
+      SignUpPage(),
       MyPage(),
       AdminPage()
     ];
