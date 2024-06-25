@@ -1,9 +1,9 @@
 /**
- * CouponDTO.dart
- *
- * 쿠폰 정보를 담는 DTO
+ * CouponDTO
+ * 쿠폰 정보를 담는 DTO 클래스
  *
  * @jwson-automation
+ *
  */
 
 class CouponDTO {
