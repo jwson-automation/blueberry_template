@@ -1,18 +1,16 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'SignUpPage.dart';
 
-class EmailInputPage extends ConsumerWidget {
+class PasswordInputPage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  EmailInputPage({required this.onNext});
+  PasswordInputPage({required this.onNext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final email = ref.read(emailProvider.notifier);
+    final password = ref.watch(passwordProvider.notifier);
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -20,13 +18,13 @@ class EmailInputPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
-            onChanged: (value) => email.state = value,
-            decoration: InputDecoration(labelText: '이메일 입력'),
+            onChanged: (value) => password.state = value,
+            decoration: InputDecoration(labelText: '비밀번호 입력'),
           ),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: onNext,
-            child: Text('인증번호 전송'),
+            child: Text('Next'),
           ),
         ],
       ),
@@ -34,14 +32,15 @@ class EmailInputPage extends ConsumerWidget {
   }
 }
 
-class EmailVerificationPage extends ConsumerWidget {
+class PasswordConfirmPage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  EmailVerificationPage({required this.onNext});
+  PasswordConfirmPage({required this.onNext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final verificationCode = ref.watch(emailVerificationCodeProvider.notifier);
+    final password = ref.watch(passwordProvider.notifier);
+    final passwordConfirm = ref.watch(passwordConfirmProvider.notifier);
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -49,8 +48,8 @@ class EmailVerificationPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
-            onChanged: (value) => verificationCode.state = value,
-            decoration: InputDecoration(labelText: '이메일 코드 입력'),
+            onChanged: (value) => passwordConfirm.state = value,
+            decoration: InputDecoration(labelText: '비밀번호 확인'),
           ),
           SizedBox(height: 20),
           ElevatedButton(

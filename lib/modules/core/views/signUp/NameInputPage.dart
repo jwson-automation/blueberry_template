@@ -10,7 +10,8 @@ class NameInputPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final verificationCode = ref.watch(nameProvider.notifier);
+    final name = ref.watch(nameProvider.notifier);
+    final nickname = ref.watch(nicknameProvider.notifier);
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -18,10 +19,14 @@ class NameInputPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
-            onChanged: (value) => verificationCode.state = value,
+            onChanged: (value) => name.state = value,
             decoration: InputDecoration(labelText: '이름 입력'),
           ),
           SizedBox(height: 20),
+          TextField(
+            onChanged: (value) => nickname.state = value,
+            decoration: InputDecoration(labelText: '닉네임 입력'),
+          ),
           ElevatedButton(
             onPressed: onNext,
             child: Text('Next'),
