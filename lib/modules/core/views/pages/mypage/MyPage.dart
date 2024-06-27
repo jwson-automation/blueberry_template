@@ -7,9 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../providers/firebase/FirebaseStoreServiceProvider.dart';
 import '../../../providers/firebase/fireStorageServiceProvider.dart';
+import '../../../providers/item/square_title.dart';
 import '../../../providers/user/ProfileImageProvider.dart';
 import '../../../providers/user/UserInfoProvider.dart';
 import '../../../providers/firebase/FirebaseAuthServiceProvider.dart';
+import '../../../services/SocialAuthService.dart';
 import '../../../utils/AppStrings.dart';
 import 'SignUpDialog.dart';
 
@@ -318,17 +320,36 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Container(
             width: MediaQuery.of(context).size.width * 1,
             height: 1,
             color: Colors.black,
           ),
-          Text('google'),
-          Text('apple'),
-          Text('github'),
-          Text('naver'),
-          Text('kakao'),
+          const SizedBox(height: 15,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //Google button
+              SquareTile(
+                  onTap: () => AuthService().signInWithGoogle(),
+                  imagePath: 'assets/login_page_images/google.png'
+              ),
+              const SizedBox(width: 10,),
+              //Apple button
+              SquareTile(
+                  onTap: () => AuthService().signInWithApple(),
+                  imagePath: 'assets/login_page_images/apple.png'
+              ),
+              const SizedBox(width: 10,),
+              //github button
+              SquareTile(
+                  onTap: () => AuthService().signInWithApple(),
+                  imagePath: 'assets/login_page_images/github.png'
+              ),
+            ],
+          ),
+
         ],
       ),
     ),
