@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBzUuA327hH4UAAW6-xarN28P6Ym75YGUk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>722613818443</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.blueberry.template.blueberryFlutterTemplate</string>
+	<key>PROJECT_ID</key>
+	<string>blueberry-template-47de2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>blueberry-template-47de2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:722613818443:ios:f25f99dc33510720dba9ce</string>
+</dict>
+</plist>
