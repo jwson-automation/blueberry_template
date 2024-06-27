@@ -17,7 +17,9 @@ Flutter Version Upgrade
 
 - 파이어베이스 설정을 해주세요.
 1. 파이어베이스 프로젝트 생성
-2. `flutterfire configure --project={프로젝트명}`
+2. - 'curl -sL https://firebase.tools | bash'
+   - 'dart pub global activate flutterfire_cli'
+   - `flutterfire configure --project={프로젝트명}'
    (이것만 해도 앱이 빌드 됩니다.)
 
 4. Authentication > 시작하기 > 로그인 방법 > 이메일/비밀번호 활성화

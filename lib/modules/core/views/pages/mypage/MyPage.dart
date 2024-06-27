@@ -297,7 +297,55 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               style: TextStyle(color: Colors.blue),
             ),
           ),
-          TextButton(onPressed: () {}, child: const Text('비밀번호 찾기')),
+          TextButton(
+            onPressed: () async {
+              final resetEmailController = TextEditingController();
+              await showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('이메일 주소를 입력하세요.'),
+                      content: TextField(
+                        controller: resetEmailController,
+                        decoration: const InputDecoration(labelText: '이메일'),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pop(resetEmailController.text);
+                          },
+                          child: const Text('확인'),
+                        ),
+                      ],
+                    );
+                  });
+
+              final actionCodeSettings = ActionCodeSettings(
+                /// 아래의 내용을 각 프로젝트이 Deeplink 로 변경
+                url: 'https://withcenter-test-5.firebaseapp.com',
+                handleCodeInApp: true,
+
+                /// iOS 용
+                iOSBundleId: 'bundle.id',
+              );
+
+              await FirebaseAuth.instance.sendPasswordResetEmail(
+                email: resetEmailController.text,
+
+                /// 웹에서 사용하는 경우, 이 값을 지정하면 에러가 난다.
+                actionCodeSettings: kIsWeb ? null : actionCodeSettings,
+              );
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('비밀번호 리셋 링크가 전송되었습니다. 메일 함을 열어보세요.'),
+                  ),
+                );
+              }
+            },
+            child: const Text('비밀번호 찾기'),
+          ),
         ],
       ),
     ),
