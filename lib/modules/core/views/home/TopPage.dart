@@ -6,33 +6,33 @@ import '../chat/ChatPage.dart';
 import '../pages/mypage/MyPage.dart';
 import '../pages/shopping/ShoppingPageSample.dart';
 
-/**
- * TopPage.dart
- *
- * Top Page
- * - BottomNavigationBar를 통해 각 페이지로 이동
- *
- * @jwson-automation
- */
+/// TopPage.dart
+///
+/// Top Page
+/// - BottomNavigationBar를 통해 각 페이지로 이동
+///
+/// @jwson-automation
 
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
 class TopPage extends ConsumerWidget {
+  const TopPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     print('TopPage build');
-    final _selectedIndex = ref.watch(selectedIndexProvider);
+    final selectedIndex = ref.watch(selectedIndexProvider);
 
-    final List<Widget> _pages = [
+    final List<Widget> pages = [
       ShoppingPage(),
       ChatPage(),
-      MyPage(),
+      const MyPage(),
       AdminPage()
     ];
 
     return Scaffold(
       body: Center(
-        child: _pages[_selectedIndex],
+        child: pages[selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -58,7 +58,7 @@ class TopPage extends ConsumerWidget {
             label: 'Admin',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: selectedIndex,
         onTap: (index) =>
             ref.read(selectedIndexProvider.notifier).state = index,
       ),

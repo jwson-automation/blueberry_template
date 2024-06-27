@@ -323,11 +323,8 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
 
               final actionCodeSettings = ActionCodeSettings(
                 /// 아래의 내용을 각 프로젝트이 Deeplink 로 변경
-                url: 'https://withcenter-test-5.web.app/',
+                url: 'https://withcenter-test-6.firebaseapp.com/',
                 handleCodeInApp: true,
-
-                /// iOS 용
-                iOSBundleId: 'bundle.id',
               );
 
               await FirebaseAuth.instance.sendPasswordResetEmail(
