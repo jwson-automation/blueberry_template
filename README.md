@@ -49,3 +49,41 @@ WEB IMAGE RENDERING (https://docs.flutter.dev/development/platform-integration/w
 
 ![image](https://github.com/jwson-automation/blueberry_template/assets/108061510/e451dfde-9141-42a5-805c-a0062a9c11e2)
 
+
+## .gitignore 에 platform 예외 처리에 대한 변화
+
+개발자마다 환경이 다르므로 설정 파일이 충돌해 코드 공유가 어려울 수 있습니다. 예를 들어, package name 이나 bundle id 부터 시작해서, 결제 관련 코딩을 하는 경우 예를 들면, 페이팔, Stripe, 인앱결제를 사용하려면 AndroidManifest, google-service.json, Info.plist, GoogleService-Info.plist 등의 파일 수정이 필요하지만, 이 정보는 공유되면 안되는 정보 일 수 있으며, 또 공유가 되면, 필요 없는 설정이 추가되거나 자신의 설정이 삭제되거나 하는 일이 발생 합니다. 따라서 각 개발자가 필요한 플랫폼을 직접 설정하도록 합니다.
+
+그래서 가장 간단한 방법은 자신이 필요한 플랫폼만 직접 설치해서 사용하는 것입니다. 플랫폼 설정/추가하는 자세한 방법은 플러터 공식 홈페이지에 있으므로 참고해 주시기 바랍니다.
+
+Andoid,iOS,Web 추가하는 방법
+
+```sh
+rm -rf android ios web
+flutter create . --platform=android,ios,web --org [도메인] --project-name [앱이름]
+```
+
+예를 들면, `flutter create . --platform=android,ios,web --org com.lab --project-name preset` 와 같이 하면 된다.
+
+## 비밀번호 리셋
+
+이메일/비밀번호 로그인에서 비밀번호를 잃어 버린 경우, 사용자는 다음 같은 시나리오를 통해서 비밀번호를 변경 할 수 있습니다.
+
+### 웹에서 비밀번호 리셋
+
+1. (웹에서) 비밀번호 리셋 요청하면 리셋 링크가 메일로 전달 됨
+2. 이메일 박스에서 비밀번호 리셋 링크 클릭하면 웹 페이지가 열림
+3. 구글에서 제공하는 비밀번호 변경 폼에서 비밀번호 변경
+4. 홈페이지를 열어서 변경된 비밀번호로 로그인
+
+### 앱에서 비밀번호 리셋
+
+1. (앱에서) 비밀번호 리셋 요청하면 리셋 링크가 메일로 전달 됨
+2. 이메일 박스에서 리셋 링크 터치하면 **앱이 열림**
+3. (앱 내에서) 비밀번호 변경
+4. 새 비밀번호로 로그인
+
+앱에서 비밀번호를 변경하면 Deeplink 로 웹 페이지가 아닌, 앱 내에서 비밀번호를 변경할 수 있습니다. 즉, 웹 페이지가 열리고, 웹 페이지를 닫고, 앱을 열고 할 필요 없이 부드럽게 동작이 연결됩니다.
+
+
+
