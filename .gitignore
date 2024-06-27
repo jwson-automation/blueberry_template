@@ -1,11 +1,11 @@
 # Ignore platform folders.
 # 이유: 개발자마다 환경이 다르므로 설정 파일이 충돌해 코드 공유가 어려울 수 있습니다. 예를 들어, 쇼핑몰 개발 시 페이팔, Stripe, 인앱결제를 사용하려면 AndroidManifest, google-service.json, Info.plist, GoogleService-Info.plist 등의 파일 수정이 필요하지만, 이 정보는 공유되지 않아야 하며, 공유가 되면, 필요 없는 설정이 추가되거나 자신의 설정이 삭제되거나 하는 일이 발생 합니다. 따라서 각 개발자가 필요한 플랫폼을 직접 설정하도록 합니다.
-./android
-./ios
-./web
-./linux
-./macos
-./windows
+android/
+ios/
+web/
+linux/
+macos/
+windows/
 
 # Miscellaneous
 *.class

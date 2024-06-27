@@ -12,6 +12,13 @@
             "program": "lib/main.dart"
         },
         {
+            "name": "Simulator",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554",
+            "program": "lib/main.dart"
+        },
+        {
             "name": "blueberry_template (profile mode)",
             "request": "launch",
             "type": "dart",

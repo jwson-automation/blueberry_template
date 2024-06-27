@@ -13,20 +13,20 @@ import '../../../providers/firebase/FirebaseAuthServiceProvider.dart';
 import '../../../utils/AppStrings.dart';
 import 'SignUpDialog.dart';
 
-/**
- * MyPage.dart
- *
- * My Page
- * - 사용자 정보를 보여주는 화면
- * - 사용자 정보 수정 및 로그아웃 기능을 제공
- *
- * @jwson-automation
- */
+/// MyPage.dart
+///
+/// My Page
+/// - 사용자 정보를 보여주는 화면
+/// - 사용자 정보 수정 및 로그아웃 기능을 제공
+///
+/// @jwson-automation
 
 final wantEditAgeProvider = StateProvider<bool>((ref) => false);
 final wantEditNameProvider = StateProvider<bool>((ref) => false);
 
 class MyPage extends ConsumerWidget {
+  const MyPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 유저 정보를 가져오는 상태 관리 객체
@@ -53,9 +53,8 @@ Widget _buildUserDetails(BuildContext context, WidgetRef ref) {
   final wantEditName = ref.watch(wantEditNameProvider);
   final wantEditAge = ref.watch(wantEditAgeProvider);
 
-  TextEditingController _nameController =
-      TextEditingController(text: user.name);
-  TextEditingController _ageController =
+  TextEditingController nameController = TextEditingController(text: user.name);
+  TextEditingController ageController =
       TextEditingController(text: user.age.toString());
 
   return Center(
@@ -107,15 +106,15 @@ Widget _buildUserDetails(BuildContext context, WidgetRef ref) {
                   wantEditName
                       ? Expanded(
                           child: TextField(
-                            controller: _nameController,
+                            controller: nameController,
                             decoration: const InputDecoration(
                               labelText: 'Name',
                               border: OutlineInputBorder(),
                             ),
-                            onSubmitted: (_nameController) {
+                            onSubmitted: (nameController) {
                               ref
                                   .read(userInfoNotifierProvider.notifier)
-                                  .updateUser(name: _nameController);
+                                  .updateUser(name: nameController);
                               ref.read(wantEditNameProvider.notifier).state =
                                   false;
                             },
@@ -128,7 +127,7 @@ Widget _buildUserDetails(BuildContext context, WidgetRef ref) {
                           onPressed: () {
                             ref
                                 .read(userInfoNotifierProvider.notifier)
-                                .updateUser(name: _nameController.text);
+                                .updateUser(name: nameController.text);
                             ref.read(wantEditNameProvider.notifier).state =
                                 !wantEditName;
                           },
@@ -147,7 +146,7 @@ Widget _buildUserDetails(BuildContext context, WidgetRef ref) {
                   wantEditAge
                       ? Expanded(
                           child: TextFormField(
-                            controller: _ageController,
+                            controller: ageController,
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               labelText: 'Age',
@@ -162,8 +161,7 @@ Widget _buildUserDetails(BuildContext context, WidgetRef ref) {
                           onPressed: () {
                             ref
                                 .read(userInfoNotifierProvider.notifier)
-                                .updateUser(
-                                    age: int.parse(_ageController.text));
+                                .updateUser(age: int.parse(ageController.text));
                             ref.read(wantEditAgeProvider.notifier).state =
                                 !wantEditAge;
                           },
@@ -209,18 +207,18 @@ Widget _buildUserDetails(BuildContext context, WidgetRef ref) {
 Widget _buildLogin(BuildContext context, WidgetRef ref) {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextFormField(
             controller: emailController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: AppStrings.emailInputLabel,
               border: OutlineInputBorder(),
             ),
@@ -235,11 +233,11 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               return null;
             },
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextFormField(
             controller: passwordController,
             obscureText: true,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: AppStrings.passwordInputLabel,
               border: OutlineInputBorder(),
             ),
@@ -254,10 +252,10 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               return null;
             },
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () async {
-              if (_formKey.currentState!.validate()) {
+              if (formKey.currentState!.validate()) {
                 String email = emailController.text.trim();
                 String password = passwordController.text.trim();
                 try {
@@ -269,7 +267,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text(AppStrings.errorTitle),
+                        title: const Text(AppStrings.errorTitle),
                         content: Text('에러: $e'),
                         actions: [
                           TextButton(
@@ -294,11 +292,12 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               context: context,
               builder: (BuildContext context) => SignUpDialog(),
             ),
-            child: Text(
+            child: const Text(
               AppStrings.signUpButtonText,
               style: TextStyle(color: Colors.blue),
             ),
           ),
+          TextButton(onPressed: () {}, child: const Text('비밀번호 찾기')),
         ],
       ),
     ),
@@ -307,26 +306,26 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
 
 Widget _uploadProfileImageButtons(FirestoreService firestoreService,
     FirebaseStorageService firebaseStorageService, BuildContext context) {
-  final _userId = FirebaseAuth.instance.currentUser!.uid;
+  final userId = FirebaseAuth.instance.currentUser!.uid;
 
   return IconButton(
-    icon: Icon(Icons.upload_file),
+    icon: const Icon(Icons.upload_file),
     onPressed: () async {
       try {
         // 이미지 피커를 통해 이미지를 선택
         var imageUrl = '';
 
         if (kIsWeb) {
-          final ImagePicker _picker = ImagePicker();
+          final ImagePicker picker = ImagePicker();
           final XFile? image =
-              await _picker.pickImage(source: ImageSource.gallery);
+              await picker.pickImage(source: ImageSource.gallery);
 
           image?.readAsBytes().then((value) async {
             imageUrl = await firebaseStorageService.uploadImageFromWeb(
                 value, ImageType.profileimage,
-                fixedFileName: _userId);
+                fixedFileName: userId);
 
-            firestoreService.createProfileIamge(_userId, imageUrl);
+            firestoreService.createProfileIamge(userId, imageUrl);
           });
         }
         if (!kIsWeb) {
@@ -336,9 +335,9 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
             // 선택된 이미지를 Firebase Storage에 업로드
             imageUrl = await firebaseStorageService.uploadImageFromApp(
                 File(pickedFile.path), ImageType.profileimage,
-                fixedFileName: _userId);
+                fixedFileName: userId);
 
-            firestoreService.createProfileIamge(_userId, imageUrl);
+            firestoreService.createProfileIamge(userId, imageUrl);
           }
         }
         if (imageUrl != '') {
