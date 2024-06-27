@@ -254,51 +254,81 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               return null;
             },
           ),
-          SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () async {
-              if (_formKey.currentState!.validate()) {
-                String email = emailController.text.trim();
-                String password = passwordController.text.trim();
-                try {
-                  await ref
-                      .read(firebaseAuthServiceProvider)
-                      .signInWithEmailPassword(email, password);
-                } catch (e) {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text(AppStrings.errorTitle),
-                        content: Text('에러: $e'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text(AppStrings.okButtonText),
-                          ),
-                        ],
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: (){},
+                child: const Text(
+                  AppStrings.passwordForgot,
+                  style: TextStyle(color: Colors.black87),
+                ),
+              ),
+            ],
+          ),
+
+          //로그인 버튼 & 회원가입 버튼
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    String email = emailController.text.trim();
+                    String password = passwordController.text.trim();
+                    try {
+                      await ref
+                          .read(firebaseAuthServiceProvider)
+                          .signInWithEmailPassword(email, password);
+                    } catch (e) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(AppStrings.errorTitle),
+                            content: Text('에러: $e'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text(AppStrings.okButtonText),
+                              ),
+                            ],
+                          );
+                        },
                       );
-                    },
-                  );
-                }
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.blue,
-            ),
-            child: const Text(AppStrings.loginButtonText),
+                    }
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                ),
+                child: const Text(AppStrings.loginButtonText),
+              ),
+              TextButton(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) => SignUpDialog(),
+                ),
+                child: Text(
+                  AppStrings.signUpButtonText,
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => showDialog(
-              context: context,
-              builder: (BuildContext context) => SignUpDialog(),
-            ),
-            child: Text(
-              AppStrings.signUpButtonText,
-              style: TextStyle(color: Colors.blue),
-            ),
+          SizedBox(height: 16),
+          Container(
+            width: MediaQuery.of(context).size.width * 1,
+            height: 1,
+            color: Colors.black,
           ),
+          Text('google'),
+          Text('apple'),
+          Text('github'),
+          Text('naver'),
+          Text('kakao'),
         ],
       ),
     ),
