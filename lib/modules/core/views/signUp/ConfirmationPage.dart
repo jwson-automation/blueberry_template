@@ -8,11 +8,8 @@ import 'SignUpPage.dart';
 final signUpProvider = FutureProvider((ref) async {
   // Simulate a network request with a 2-second delay
   await Future.delayed(Duration(seconds: 2));
-
   return true;
 });
-
-Future<bool>
 
 class ConfirmationPage extends ConsumerWidget {
   final VoidCallback onNext;
@@ -25,7 +22,7 @@ class ConfirmationPage extends ConsumerWidget {
     final name = ref.read(nameProvider.notifier);
     final nickname = ref.read(nicknameProvider.notifier);
     final password = ref.read(passwordProvider.notifier);
-    final isLoading = ref.watch(signUpProvider.notifier);
+    final isLoading = ref.watch(signUpProvider);
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
