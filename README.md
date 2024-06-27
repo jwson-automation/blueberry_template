@@ -47,3 +47,15 @@ WEB IMAGE RENDERING (https://docs.flutter.dev/development/platform-integration/w
 
 ![image](https://github.com/jwson-automation/blueberry_template/assets/108061510/e451dfde-9141-42a5-805c-a0062a9c11e2)
 
+
+## .gitignore 에 platform 예외 처리에 대한 변화
+
+개발자마다 환경이 다르므로 설정 파일이 충돌해 코드 공유가 어려울 수 있습니다. 예를 들어, package name 이나 bundle id 부터 시작해서, 결제 관련 코딩을 하는 경우 예를 들면, 페이팔, Stripe, 인앱결제를 사용하려면 AndroidManifest, google-service.json, Info.plist, GoogleService-Info.plist 등의 파일 수정이 필요하지만, 이 정보는 공유되면 안되는 정보 일 수 있으며, 또 공유가 되면, 필요 없는 설정이 추가되거나 자신의 설정이 삭제되거나 하는 일이 발생 합니다. 따라서 각 개발자가 필요한 플랫폼을 직접 설정하도록 합니다.
+
+그래서 가장 간단한 방법은 자신이 필요한 플랫폼만 직접 설치해서 사용하는 것입니다. 플랫폼 설정/추가하는 자세한 방법은 플러터 공식 홈페이지에 있으므로 참고해 주시기 바랍니다.
+
+Andoid,iOS,Web 추가하는 방법
+
+```sh
+flutter create . --platform=android,ios,web
+```
