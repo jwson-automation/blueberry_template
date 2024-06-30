@@ -60,4 +60,4 @@ ios/firebase_app_id_file.json
 lib/firebase_options.dart
 
 # Ignore generated files
-pubspec.lock
+/pubspec.lock
