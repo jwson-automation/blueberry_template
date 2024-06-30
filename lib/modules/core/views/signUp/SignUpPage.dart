@@ -1,4 +1,4 @@
-import 'package:blueberry_flutter_template/modules/core/views/signUp/policy/TermsOfServicePage.dart';
+import 'package:blueberry_flutter_template/modules/core/views/signUp/TermsOfServicePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
