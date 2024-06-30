@@ -26,6 +26,8 @@ dependencies:
   url_launcher: ^6.2.6
   bootpay: ^4.9.7
   uuid: ^4.4.0
+  flutter_native_splash: ^2.4.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -41,19 +43,33 @@ flutter:
     - assets/600x400/
     - assets/300x420/
     - assets/700x150/
+    - assets/logo/
 
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
 
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+# Run Commands to generate splash screen
+# 1) flutter clean
+# 2) flutter pub get
+# 3) flutter pub run flutter_native_splash:create
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/logo/logo_4.png
+  color_dark: "#1a1a1a"
+  image_dark: assets/logo/logo_4.png
+
+  android_12:
+    icon_background_color: "#FFFFFF"
+    image: assets/logo/logo_4.png
+    icon_background_color_dark: "#1a1a1a"
+    image_dark: assets/logo/logo_4.png
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo/logo_5.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/logo/logo_5.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
