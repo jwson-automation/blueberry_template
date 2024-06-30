@@ -344,7 +344,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               const SizedBox(width: 10,),
               //github button
               SquareTile(
-                  onTap: () => AuthService().signInWithApple(),
+                  onTap: () => AuthService().signInWithGithub(),
                   imagePath: 'assets/login_page_images/github.png'
               ),
             ],
