@@ -9,10 +9,35 @@ import 'package:flutter/material.dart';
  * @jwson-automation
  */
 
-class PrivacyPolicyPage extends StatelessWidget {
+class PrivacyPolicyPage extends StatefulWidget {
   final VoidCallback onNext;
 
   PrivacyPolicyPage({required this.onNext});
+
+  @override
+  State<PrivacyPolicyPage> createState() => _PrivacyPolicyPageState();
+}
+
+class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
+  final ScrollController _scrollController = ScrollController();
+  bool isBottom = false;
+
+  @override
+  void initState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        setState(() {
+          isBottom = true;
+        });
+      } else {
+        setState(() {
+          isBottom = false;
+        });
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +46,7 @@ class PrivacyPolicyPage extends StatelessWidget {
           title: Text('개인정보 처리방침'),
         ),
         body: SingleChildScrollView(
+          controller: _scrollController,
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +59,17 @@ class PrivacyPolicyPage extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: onNext,
+          onPressed: () {
+            if (isBottom) {
+              widget.onNext();
+            } else {
+              _scrollController.animateTo(
+                _scrollController.position.maxScrollExtent,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            }
+          },
           child: Icon(Icons.check),
         ));
   }

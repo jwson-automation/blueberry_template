@@ -9,10 +9,35 @@ import 'package:flutter/material.dart';
  * @jwson-automation
  */
 
-class TermsOfServicePage extends StatelessWidget {
+class TermsOfServicePage extends StatefulWidget {
   final VoidCallback onNext;
 
   TermsOfServicePage({required this.onNext});
+
+  @override
+  State<TermsOfServicePage> createState() => _TermsOfServicePageState();
+}
+
+class _TermsOfServicePageState extends State<TermsOfServicePage> {
+  final ScrollController _scrollController = ScrollController();
+  bool isBottom = false;
+
+  @override
+  void initState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        setState(() {
+          isBottom = true;
+        });
+      } else {
+        setState(() {
+          isBottom = false;
+        });
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +46,21 @@ class TermsOfServicePage extends StatelessWidget {
           title: Text('개인정보처리방침'),
         ),
         body: SingleChildScrollView(
+          controller: _scrollController,
           padding: EdgeInsets.all(16.0),
           child: getTerms(),
         ),
         floatingActionButton: (FloatingActionButton(
           onPressed: () {
-            onNext();
+            isBottom
+                ? widget.onNext()
+                : _scrollController.animateTo(
+                    _scrollController.position.maxScrollExtent,
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
           },
-          child: Icon(Icons.check_box),
+          child: Icon(Icons.check),
         )));
   }
 }
