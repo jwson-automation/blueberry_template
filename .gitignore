@@ -61,3 +61,6 @@ lib/firebase_options.dart
 
 # Ignore generated files
 /pubspec.lock
+
+# Ignore metadata
+.metadata
