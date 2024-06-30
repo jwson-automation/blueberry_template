@@ -28,6 +28,8 @@ dependencies:
   uuid: ^4.4.0
   flutter_native_splash: ^2.4.0
   flutter_launcher_icons: ^0.13.1
+  google_sign_in: ^6.2.1
+  sign_in_with_apple: ^6.1.1
   app_links: ^6.1.3
 
 dev_dependencies:
@@ -45,6 +47,7 @@ flutter:
     - assets/300x420/
     - assets/700x150/
     - assets/logo/
+    - assets/login_page_images/
 
 
 # Run Commands to generate splash screen

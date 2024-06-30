@@ -21,6 +21,7 @@ class AppStrings {
   static const String errorTitle = '오류';
   static const String okButtonText = '확인';
   static const String loggedInMessage = '로그인 되었습니다.';
+  static const String passwordForgot = '비밀번호를 잊어버렸나요?';
 
   //SignUpDialog.dart
   static const String signUpPageTitle = '회원가입';

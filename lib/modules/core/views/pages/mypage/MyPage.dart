@@ -7,9 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../providers/firebase/FirebaseStoreServiceProvider.dart';
 import '../../../providers/firebase/fireStorageServiceProvider.dart';
+import '../../../providers/item/square_title.dart';
 import '../../../providers/user/ProfileImageProvider.dart';
 import '../../../providers/user/UserInfoProvider.dart';
 import '../../../providers/firebase/FirebaseAuthServiceProvider.dart';
+import '../../../services/SocialAuthService.dart';
 import '../../../utils/AppStrings.dart';
 import 'SignUpDialog.dart';
 
@@ -252,97 +254,103 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
               return null;
             },
           ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () async {
-              if (formKey.currentState!.validate()) {
-                String email = emailController.text.trim();
-                String password = passwordController.text.trim();
-                try {
-                  await ref
-                      .read(firebaseAuthServiceProvider)
-                      .signInWithEmailPassword(email, password);
-                } catch (e) {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text(AppStrings.errorTitle),
-                        content: Text('에러: $e'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text(AppStrings.okButtonText),
-                          ),
-                        ],
+
+          SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: (){},
+                child: const Text(
+                  AppStrings.passwordForgot,
+                  style: TextStyle(color: Colors.black87),
+                ),
+              ),
+            ],
+          ),
+
+          //로그인 버튼 & 회원가입 버튼
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  if (formKey.currentState!.validate()) {
+                    String email = emailController.text.trim();
+                    String password = passwordController.text.trim();
+                    try {
+                      await ref
+                          .read(firebaseAuthServiceProvider)
+                          .signInWithEmailPassword(email, password);
+                    } catch (e) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(AppStrings.errorTitle),
+                            content: Text('에러: $e'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text(AppStrings.okButtonText),
+                              ),
+                            ],
+                          );
+                        },
                       );
-                    },
-                  );
-                }
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.blue,
-            ),
-            child: const Text(AppStrings.loginButtonText),
-          ),
-          TextButton(
-            onPressed: () => showDialog(
-              context: context,
-              builder: (BuildContext context) => SignUpDialog(),
-            ),
-            child: const Text(
-              AppStrings.signUpButtonText,
-              style: TextStyle(color: Colors.blue),
-            ),
-          ),
-          TextButton(
-            onPressed: () async {
-              final resetEmailController = TextEditingController();
-              await showDialog(
+                    }
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                ),
+                child: const Text(AppStrings.loginButtonText),
+              ),
+              TextButton(
+                onPressed: () => showDialog(
                   context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('이메일 주소를 입력하세요.'),
-                      content: TextField(
-                        controller: resetEmailController,
-                        decoration: const InputDecoration(labelText: '이메일'),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pop(resetEmailController.text);
-                          },
-                          child: const Text('확인'),
-                        ),
-                      ],
-                    );
-                  });
-
-              final actionCodeSettings = ActionCodeSettings(
-                /// 아래의 내용을 각 프로젝트이 Deeplink 로 변경
-                url: 'https://withcenter-test-6.firebaseapp.com/',
-                handleCodeInApp: true,
-              );
-
-              await FirebaseAuth.instance.sendPasswordResetEmail(
-                email: resetEmailController.text,
-
-                /// 웹에서 사용하는 경우, 이 값을 지정하면 에러가 난다.
-                actionCodeSettings: kIsWeb ? null : actionCodeSettings,
-              );
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('비밀번호 리셋 링크가 전송되었습니다. 메일 함을 열어보세요.'),
-                  ),
-                );
-              }
-            },
-            child: const Text('비밀번호 찾기'),
+                  builder: (BuildContext context) => SignUpDialog(),
+                ),
+                child: Text(
+                  AppStrings.signUpButtonText,
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+            ],
           ),
+
+          const SizedBox(height: 16),
+          Container(
+            width: MediaQuery.of(context).size.width * 1,
+            height: 1,
+            color: Colors.black,
+          ),
+          const SizedBox(height: 15,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //Google button
+              SquareTile(
+                  onTap: () => AuthService().signInWithGoogle(),
+                  imagePath: 'assets/login_page_images/google.png'
+              ),
+              const SizedBox(width: 10,),
+              //Apple button
+              SquareTile(
+                  onTap: () => AuthService().signInWithApple(),
+                  imagePath: 'assets/login_page_images/apple.png'
+              ),
+              const SizedBox(width: 10,),
+              //github button
+              SquareTile(
+                  onTap: () => AuthService().signInWithGithub(),
+                  imagePath: 'assets/login_page_images/github.png'
+              ),
+            ],
+          ),
+
+
         ],
       ),
     ),
