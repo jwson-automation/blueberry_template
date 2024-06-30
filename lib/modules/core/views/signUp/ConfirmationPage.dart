@@ -37,6 +37,19 @@ class ConfirmationPage extends ConsumerWidget {
           SizedBox(height: 20),
           Text('비밀번호: ${password.state}'),
           SizedBox(height: 20),
+          Row(
+            children: [
+              Checkbox(value: true, onChanged: (value) {}),
+              Text('개인정보 처리방침에 동의합니다.'),
+            ],
+          ),
+          Row(
+            children: [
+              Checkbox(value: true, onChanged: (value) {}),
+              Text('이용약관에 동의합니다.'),
+            ],
+          ),
+          SizedBox(height: 20),
           isLoading.when(
             data: (value) => ElevatedButton(
               onPressed: onNext,
