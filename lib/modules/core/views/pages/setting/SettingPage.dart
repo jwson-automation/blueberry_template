@@ -1,12 +1,16 @@
 import 'package:blueberry_flutter_template/modules/core/views/pages/setting/OssLicensesPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../../modules/core/providers/ThemeProvider.dart';
 
 class SettingPage extends ConsumerWidget {
   const SettingPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final themeNotifier = ref.read(themeNotifierProvider.notifier);
+    final isDarkMode = ref.watch(themeNotifierProvider) == ThemeMode.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Setting'),
@@ -52,6 +56,14 @@ class SettingPage extends ConsumerWidget {
               ),
               onPressed: () {},
               child: const Text('Account delete'),
+            ),
+            const SizedBox(height: 40),
+            SwitchListTile(
+              title: const Text('Dark Mode'),
+              value: isDarkMode,
+              onChanged: (bool value) {
+                themeNotifier.toggleTheme();
+              },
             ),
           ],
         ),
