@@ -1,3 +1,5 @@
+import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting.dart';
+import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings.design_sample.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/setting/SettingPage.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/shopping/ShoppingPage.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,8 @@ class TopPage extends ConsumerWidget {
       SignUpPage(),
       MyPage(),
       const SettingPage(),
-      AdminPage()
+      AdminPage(),
+      MySettings(),
     ];
 
     return Scaffold(
@@ -63,6 +66,10 @@ class TopPage extends ConsumerWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_mail_rounded),
             label: 'Admin',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_3),
+            label: 'FixSetting',
           ),
         ],
         currentIndex: selectedIndex,
