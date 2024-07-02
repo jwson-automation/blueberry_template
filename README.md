@@ -1,4 +1,4 @@
-## What is blueberry Template
+d## What is blueberry Template
 
 - 쇼핑몰, 커뮤니티, 소개팅, 등의 자주 사용되는 서비스에 필요한 코드를 모두 넣어둔 템플릿입니다.
 - 공통적인 부분만 넣어 사용하는 일반적인 템플릿과 다르게, 여기에는 필요한 모든 코드들을 넣어두고, 클론해서 필요 없는 기능을 삭제하는 방향으로 템플릿을 사용합니다.
@@ -20,7 +20,7 @@ Flutter Version Upgrade
 2. - 'curl -sL https://firebase.tools | bash'
    - 'dart pub global activate flutterfire_cli'
    - `flutterfire configure --project={프로젝트명}'
-   (이것만 해도 앱이 빌드 됩니다.)
+   (이것만 해도 앱이 빌드 됩니다.)flutterfire configure --project=blueberrytemplate-2024-summer
 
 4. Authentication > 시작하기 > 로그인 방법 > 이메일/비밀번호 활성화
 5. Firestore Database > 데이터베이스 만들기 > 테스트 모드에서 시작
