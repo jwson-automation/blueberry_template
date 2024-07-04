@@ -52,7 +52,8 @@ class _buildUserDetailsState extends ConsumerState<buildUserDetails> {
                   error: (e, s) => CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.grey.shade300,
-                  )),
+                  )
+              ),
               Positioned(
                 right: 0,
                 bottom: 0,

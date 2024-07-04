@@ -1,15 +1,17 @@
 import 'dart:io';
+import 'package:blueberry_flutter_template/modules/core/providers/image/image_quility_provider.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting_sharepost_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-class ImageGallery extends StatefulWidget {
+class ImageGallery extends ConsumerStatefulWidget {
   @override
   _ImageGalleryState createState() => _ImageGalleryState();
 }
 
-class _ImageGalleryState extends State<ImageGallery> {
+class _ImageGalleryState extends ConsumerState<ImageGallery> {
   List<AssetEntity> _imageList = [];
 
   int _currentPage = 0;
@@ -67,6 +69,7 @@ class _ImageGalleryState extends State<ImageGallery> {
 
   @override
   Widget build(BuildContext context) {
+    final imageSet = ref.watch(imageQualityProvider);
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
@@ -83,7 +86,7 @@ class _ImageGalleryState extends State<ImageGallery> {
             }
           },
           child: FutureBuilder<Uint8List?>(
-            future: _imageList[index].thumbnailData,
+            future: _imageList[index].thumbnailDataWithSize(quality: imageSet.imageQualityLevel, const ThumbnailSize(200, 200)),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
                 return Image.memory(
