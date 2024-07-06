@@ -19,6 +19,7 @@ dependencies:
   cloud_firestore: ^4.17.2
   firebase_core: ^2.32.0
   firebase_storage: ^11.7.4
+  firebase_analytics: ^10.10.6
   image_picker: ^1.1.0
   flutter_rating_bar: ^4.0.1
   dart_openai: ^5.1.0
@@ -36,6 +37,7 @@ dependencies:
   permission_handler: ^11.3.1
   transparent_image: ^2.0.1
   photo_manager_image_provider: ^2.1.1
+  webview_flutter: ^4.8.0
 
 dev_dependencies:
   flutter_test:

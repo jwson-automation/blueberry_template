@@ -40,6 +40,16 @@ class CameraState {
 class CameraStateNotifier extends StateNotifier<CameraState> {
   CameraStateNotifier() : super(CameraState());
 
+  void setQuality(bool highQuality) {
+    state = state.copyWith(cameraQuality: highQuality);
+
+    // 변경된 카메라 퀄리티로 카메라 설명 설정
+    if (state.cameraDescription != null) {
+      setCameraDescription(state.cameraDescription!);
+    }
+    print(state.cameraQuality);
+  }
+
   // 사진을 찍을 준비를 하는 비동기 메서드
   Future<void> getReadyToTakePhoto() async {
     List<CameraDescription> cameras = await availableCameras();  // 사용 가능한 카메라 목록을 가져옴
@@ -57,27 +67,30 @@ class CameraStateNotifier extends StateNotifier<CameraState> {
 
   // 카메라 설명을 설정하고 카메라 컨트롤러를 초기화하는 메서드
   void setCameraDescription(CameraDescription cameraDescription) {
-    final controller = CameraController(cameraDescription, ResolutionPreset.medium); // 카메라 컨트롤러 생성
-    // 만약에 카메라 퀄리티를 높이고 싶ㅇ면 medium -> high 로 변경 해 주세요 !!
+      final controller = CameraController(cameraDescription,
+          state.cameraQuality ? ResolutionPreset.high : ResolutionPreset.medium); // 카메라 컨트롤러 생성
+      // 만약에 카메라 퀄리티를 높이고 싶ㅇ면 medium -> high 로 변경 해 주세요 !!
 
-    state = state.copyWith(
-      cameraDescription: cameraDescription,
-      controller: controller,
-      readyTakePhoto: false,
-    );
-
-    controller.initialize().then((_) {
       state = state.copyWith(
-        controller: controller,
-        readyTakePhoto: true,
-      );
-    }).catchError((e) {
-      state = state.copyWith(
+        cameraDescription: cameraDescription,
         controller: controller,
         readyTakePhoto: false,
       );
-    });
+
+      controller.initialize().then((_) {
+        state = state.copyWith(
+          controller: controller,
+          readyTakePhoto: true,
+        );
+      }).catchError((e) {
+        state = state.copyWith(
+          controller: controller,
+          readyTakePhoto: false,
+        );
+      });
+
   }
+
 
   // 카메라 컨트롤러를 초기화하는 비동기 메서드
   Future<bool> initialize() async {

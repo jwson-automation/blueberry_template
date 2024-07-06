@@ -7,11 +7,15 @@ import 'package:blueberry_flutter_template/modules/core/providers/user/ProfileIm
 import 'package:blueberry_flutter_template/modules/core/providers/user/UserInfoProvider.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting_bottom_modal.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting_divider.dart';
+import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings_inside_page/setting_inside_account_manager.dart';
+import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings_inside_page/setting_inside_camera_media.dart';
+import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings_inside_page/setting_inside_notice.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+
 
 class SettingsDesign extends ConsumerWidget {
   const SettingsDesign({super.key});
@@ -25,122 +29,152 @@ class SettingsDesign extends ConsumerWidget {
     final profileImage = ref.watch(profileImageStreamProvider);
 
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-              Row(
-                children: [
-                  profileImageStack(profileImage, ref, context),
-                  const Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "userID or userNickName",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+                Row(
+                  children: [
+                    profileImageStack(profileImage, ref, context),
+                    const Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "userID or userNickName",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold
+                            ),
                           ),
-                        ),
-                        Text("Google 로그인을 사용 중 입니다.")
-                      ],
-                    ),
-                  )
-                ],
+                          Text("Google 로그인을 사용 중 입니다.")
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+            SizedBox(
+              height: 40,
+            ),
+            const FixSettingDivider(),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FixSettingAccountManager(),
+                    )
+                );
+              },
+              child:  const Expanded(
+                child: ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text(
+                    "관리",
+                    style: TextStyle(
+                    fontSize: 20
+                  ),),
+                )
               ),
-          SizedBox(
-            height: 40,
-          ),
-          const FixSettingDivider(),
-          GestureDetector(
-            onTap: (){
-
-            },
-            child: const Expanded(
-              child: ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  "관리",
-                  style: TextStyle(
-                  fontSize: 20
-                ),),
-              )
             ),
-          ),
-          const FixSettingDivider(),
-          GestureDetector(
-            onTap: (){
-
-            },
-            child: const Expanded(
-                child: ListTile(
-                  leading: Icon(Icons.card_membership),
-                  title: Text("결제 정보",style: TextStyle(
-                      fontSize: 20
-                  ),),
-                )
+            const FixSettingDivider(),
+            GestureDetector(
+              onTap: (){
+      
+              },
+              child: const Expanded(
+                  child: ListTile(
+                    leading: Icon(Icons.card_membership),
+                    title: Text("결제 정보",style: TextStyle(
+                        fontSize: 20
+                    ),),
+                  )
+              ),
             ),
-          ),
-          const FixSettingDivider(),
-          GestureDetector(
-            onTap: (){
-
-            },
-            child: const Expanded(
-                child: ListTile(
-                  leading: Icon(Icons.alarm_add_outlined),
-                  title: Text("알림",style: TextStyle(
-                      fontSize: 20
-                  ),),
-                )
+            const FixSettingDivider(),
+            GestureDetector(
+              onTap: (){
+      
+              },
+              child: const Expanded(
+                  child: ListTile(
+                    leading: Icon(Icons.alarm_add_outlined),
+                    title: Text("알림",style: TextStyle(
+                        fontSize: 20
+                    ),),
+                  )
+              ),
             ),
-          ),
-          const FixSettingDivider(),
-          GestureDetector(
-            onTap: (){
-
-            },
-            child: const Expanded(
-                child: ListTile(
-                  leading: Icon(Icons.lock),
-                  title: Text("개인 / 보안",style: TextStyle(
-                      fontSize: 20
-                  ),),
-                )
+            const FixSettingDivider(),
+            GestureDetector(
+              onTap: (){
+      
+              },
+              child: const Expanded(
+                  child: ListTile(
+                    leading: Icon(Icons.lock),
+                    title: Text("개인 / 보안",style: TextStyle(
+                        fontSize: 20
+                    ),),
+                  )
+              ),
             ),
-          ),
-          const FixSettingDivider(),
-          GestureDetector(
-            onTap: (){
-
-            },
-            child: const Expanded(
-                child: ListTile(
-                  leading: Icon(Icons.monitor),
-                  title: Text("테마",style: TextStyle(
-                      fontSize: 20
-                  ),),
-                )
+            const FixSettingDivider(),
+            GestureDetector(
+              onTap: (){
+      
+              },
+              child: const Expanded(
+                  child: ListTile(
+                    leading: Icon(Icons.monitor),
+                    title: Text("테마",style: TextStyle(
+                        fontSize: 20
+                    ),),
+                  )
+              ),
             ),
-          ),
-          const FixSettingDivider(),
-          GestureDetector(
-            onTap: (){
-
-            },
-            child: const Expanded(
-                child: ListTile(
-                  leading: Icon(Icons.chat_bubble_outline),
-                  title: Text("채팅 / 미디어",style: TextStyle(
-                      fontSize: 20
-                  ),),
-                )
+            const FixSettingDivider(),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FixSettingCameraMediaPage(),
+                    )
+                );
+              },
+              child: const Expanded(
+                  child: ListTile(
+                    leading: Icon(Icons.chat_bubble_outline),
+                    title: Text("채팅 / 미디어",style: TextStyle(
+                        fontSize: 20
+                    ),),
+                  )
+              ),
             ),
-          ),
-          const FixSettingDivider(),
-        ],
+            const SizedBox(
+              height: 30,
+            ),
+            const FixSettingDivider(),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FixSettingNotice(),
+                    )
+                );
+              },
+              child: const Expanded(
+                  child: ListTile(
+                    leading: Icon(Icons.mic),
+                    title: Text("공지 사항",style: TextStyle(
+                        fontSize: 20
+                    ),),
+                  )
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
