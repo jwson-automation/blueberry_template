@@ -58,6 +58,7 @@ ios/firebase_app_id_file.json
 
 # Ignore Firebase options file
 lib/firebase_options.dart
+/firebase.json
 
 # Ignore generated files
 /pubspec.lock
