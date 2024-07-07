@@ -7,7 +7,6 @@ import 'package:blueberry_flutter_template/modules/core/providers/user/ProfileIm
 import 'package:blueberry_flutter_template/modules/core/providers/user/UserInfoProvider.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings_inside_page/setting_inside_account_manager.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings_inside_page/setting_inside_camera_media.dart';
-import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings_inside_page/setting_inside_notice.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/mypage/SettingsBottomSheet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -17,6 +16,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../providers/firebase/FirebaseAuthServiceProvider.dart';
 import '../../../widgets/CustomDivider.dart';
+import '../setting/SettingPage.dart';
 
 class MyPage extends ConsumerWidget {
   const MyPage({super.key});
@@ -47,8 +47,8 @@ class MyPage extends ConsumerWidget {
                     children: [
                       Text(
                         "userID or userNickName",
-                        style:
-                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text("Google 로그인을 사용 중 입니다.")
                     ],
@@ -145,15 +145,15 @@ class MyPage extends ConsumerWidget {
             const CustomDivider(),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => FixSettingNotice(),
-                ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SettingPage();
+                }));
               },
               child: const Expanded(
                   child: ListTile(
-                leading: Icon(Icons.mic),
+                leading: Icon(Icons.notifications),
                 title: Text(
-                  "공지 사항",
+                  "설정",
                   style: TextStyle(fontSize: 20),
                 ),
               )),

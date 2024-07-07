@@ -1,5 +1,3 @@
-import 'package:blueberry_flutter_template/modules/core/notification/local_notification_manager.dart';
-import 'package:blueberry_flutter_template/modules/core/views/pages/setting/SettingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,7 +25,6 @@ class TopPage extends ConsumerWidget {
     final List<Widget> pages = [
       ChatPage(),
       AdminPage(),
-      SettingPage(),
       LoginPage(),
     ];
 
@@ -49,10 +46,6 @@ class TopPage extends ConsumerWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_mail_rounded),
             label: 'Admin',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Setting',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
