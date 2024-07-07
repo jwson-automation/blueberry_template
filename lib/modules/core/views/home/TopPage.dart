@@ -1,3 +1,4 @@
+import 'package:blueberry_flutter_template/modules/core/notification/local_notification_manager.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/setting/SettingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

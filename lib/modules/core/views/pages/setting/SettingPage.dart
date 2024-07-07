@@ -1,3 +1,6 @@
+import 'package:blueberry_flutter_template/modules/core/providers/NotificationProvider.dart';
+import 'package:blueberry_flutter_template/modules/core/storage/FlutterSecureStorage.dart';
+import 'package:blueberry_flutter_template/modules/core/storage/StorageKeys.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/setting/OssLicensesPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,9 +21,18 @@ class SettingPage extends ConsumerWidget {
       body: Center(
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Notifications'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Notification'),
+                const SizedBox(width: 20),
+                const Icon(Icons.notifications),
+                Switch.adaptive(
+                  value: ref.watch(notificationProvider),
+                  onChanged:
+                      ref.read(notificationProvider.notifier).setNotification,
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             ElevatedButton(
