@@ -1,7 +1,8 @@
 import 'package:blueberry_flutter_template/modules/core/notification/local_notification_manager.dart';
+import 'package:blueberry_flutter_template/modules/core/storage/FlutterSecureStorage.dart';
+import 'package:blueberry_flutter_template/modules/core/storage/StorageKeys.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -27,12 +28,12 @@ class FirebaseCloudMessagingManager {
       sound: true,
     );
 
+    final storage = PreferenceStorage();
+    final fcmToken = await FirebaseMessaging.instance.getToken();
+    storage.write(StorageKeys.fcmToken, fcmToken);
+
     FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
       // TODO: If necessary send token to application server.
-
-      if (kDebugMode) {
-        print('FCM refresh token: $fcmToken');
-      }
     }).onError((err) {
       // Error getting token.
     });

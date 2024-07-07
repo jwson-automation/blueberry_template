@@ -3,6 +3,7 @@ import 'package:blueberry_flutter_template/modules/core/storage/FlutterSecureSto
 import 'package:blueberry_flutter_template/modules/core/storage/StorageKeys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 final notificationProvider =
     StateNotifierProvider<NotificationNotifier, bool>((ref) {
@@ -13,21 +14,43 @@ class NotificationNotifier extends StateNotifier<bool> {
   final _storage = PreferenceStorage();
 
   NotificationNotifier(super.state) {
+    checkPermission();
+  }
+
+  // 권한 확인
+  Future<void> checkPermission() async {
+    final status = await Permission.notification.status;
+
+    if (status.isGranted == false) return;
+
     _storage.readString(StorageKeys.fcmToken).then((value) {
-      debugPrint('fcmToken: $value');
-      state = value != null;
+      debugPrint('Saved fcmToken: $value');
+      state = value != null && value.isNotEmpty;
     });
   }
 
-  void setNotification(bool value) {
-    state = value;
+  void setNotification(bool value) async {
     if (value == false) {
       FirebaseCloudMessagingManager.deleteToken();
-      _storage.delete(StorageKeys.fcmToken);
+      _storage.write(StorageKeys.fcmToken, '');
+      state = false;
     } else {
-      FirebaseCloudMessagingManager.getToken().then((token) {
+      final status = await Permission.notification.status;
+
+      if (status.isDenied) {
+        await Permission.notification.request();
+      } else if (status.isPermanentlyDenied) {
+        await openAppSettings();
+      }
+
+      if ((await Permission.notification.status).isGranted) {
+        final token = await FirebaseCloudMessagingManager.getToken();
+
+        debugPrint('fcmToken: $token');
+
         _storage.write(StorageKeys.fcmToken, token);
-      });
+        state = true;
+      }
     }
   }
 }
