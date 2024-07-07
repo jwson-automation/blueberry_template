@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:blueberry_flutter_template/modules/core/providers/firebase/FirebaseStoreServiceProvider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/firebase/fireStorageServiceProvider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/page/page_provider.dart';
@@ -279,3 +278,4 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
       },
       icon: Icon(Icons.settings));
 }
+

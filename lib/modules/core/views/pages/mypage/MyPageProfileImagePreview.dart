@@ -5,6 +5,7 @@ import 'package:blueberry_flutter_template/modules/core/providers/firebase/fireS
 import 'package:blueberry_flutter_template/modules/core/providers/page/page_provider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/user/ProfileImageProvider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/user/UserInfoProvider.dart';
+import 'package:blueberry_flutter_template/modules/core/views/pages/mypage/MyPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,7 +50,13 @@ class SharePostScreen extends ConsumerWidget {
                         fixedFileName: _userId);
 
                     fireStorage.createProfileIamge(_userId, imageUrl);
-                    pageNotifier.moveToPAge(0);
+                    print(imageUrl);
+
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MyPage(),
+                        )
+                    );
                   });
                 } catch (e) {
                   print(e);
