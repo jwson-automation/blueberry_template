@@ -57,6 +57,7 @@ flutter:
     - assets/300x420/
     - assets/700x150/
     - assets/logo/
+    - assets/login_page_images/
 
 
 # Run Commands to generate splash screen
