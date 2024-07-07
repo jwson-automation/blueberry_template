@@ -1,4 +1,5 @@
 import 'package:blueberry_flutter_template/globals.dart';
+import 'package:blueberry_flutter_template/modules/core/notification/firebase_cloud_messaging_manager.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/mypage/PasswordResetPage.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,6 +21,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseCloudMessagingManager.initialize();
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
