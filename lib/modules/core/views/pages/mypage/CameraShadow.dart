@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 
-class DarkenOutsideCirclePainter extends CustomPainter {
+class CameraShadow extends CustomPainter {
   final double radius;
 
-  DarkenOutsideCirclePainter({required this.radius});
+  CameraShadow({required this.radius});
 
   @override
   void paint(Canvas canvas, Size size) {

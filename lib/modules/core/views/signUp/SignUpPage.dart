@@ -85,10 +85,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
           ConfirmationPage(
-            onNext: () => _pageController.nextPage(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            ),
+            onNext: () => Navigator.of(context).pop(),
           ),
         ],
       ),

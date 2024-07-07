@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ImageState {
   bool imageQuality;
-  int imageQualityLevel = 0;
+  int imageQualityLevel = 100;
 
   ImageState({
     this.imageQuality = false,

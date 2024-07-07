@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color black = Color(0xFF0D1A33);
+const Color dividerGrey = Color(0xFFC0C0C0);
 const Color grey = Color(0xFF787F91);
 const Color greySecondary = Color(0xFF808080);
 const Color white = Color(0xFFFFFFFF);

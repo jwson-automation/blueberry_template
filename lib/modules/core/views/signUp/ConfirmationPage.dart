@@ -52,7 +52,7 @@ class ConfirmationPage extends ConsumerWidget {
           SizedBox(height: 20),
           isLoading.when(
             data: (value) => ElevatedButton(
-              onPressed: onNext,
+              onPressed: onNext, // 페이지 종료
               child: Text('가입하기'),
             ),
             loading: () => CircularProgressIndicator(),

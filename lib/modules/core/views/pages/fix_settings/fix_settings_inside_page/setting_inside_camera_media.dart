@@ -1,7 +1,7 @@
 import 'package:blueberry_flutter_template/modules/core/providers/camera/camera_provider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/image/image_quility_provider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/page/page_provider.dart';
-import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting_divider.dart';
+import 'package:blueberry_flutter_template/modules/core/widgets/CustomDivider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +40,7 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
           )
       ),
     ),
-    const FixSettingDivider(),
+    const Divider(),
           GestureDetector(
             onTap: (){
               imageQualitySetBottomSheet(context, ref);
@@ -86,7 +86,7 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
                             },
                             child: const Text("일반화질"),
                         ),
-                        FixSettingDivider(),
+                        Divider(),
                         TextButton(
                             onPressed: (){
                               ref.read(cameraProvider.notifier).setQuality(true);
@@ -119,7 +119,7 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
                     },
                     child: const Text("일반화질"),
                   ),
-                  FixSettingDivider(),
+                  Divider(),
                   TextButton(
                       onPressed: (){
                         ref.read(imageQualityProvider.notifier).setImageQuality(true);

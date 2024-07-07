@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:blueberry_flutter_template/modules/core/providers/firebase/FirebaseStoreServiceProvider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/firebase/fireStorageServiceProvider.dart';
 import 'package:blueberry_flutter_template/modules/core/providers/page/page_provider.dart';
@@ -11,8 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SharePostScreen extends ConsumerWidget {
   final File imageFile;
 
-  const SharePostScreen(this.imageFile,{super.key});
-
+  const SharePostScreen(this.imageFile, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,14 +33,14 @@ class SharePostScreen extends ConsumerWidget {
             ClipOval(
               child: Image.file(
                 imageFile,
-                width: 100, height: 100,
+                width: 100,
+                height: 100,
                 fit: BoxFit.cover,
               ),
-
             ),
             TextButton(
               onPressed: () async {
-                try{
+                try {
                   var imageUrl = '';
 
                   imageFile.readAsBytes().then((value) async {
@@ -50,11 +50,8 @@ class SharePostScreen extends ConsumerWidget {
 
                     fireStorage.createProfileIamge(_userId, imageUrl);
                     pageNotifier.moveToPAge(0);
-                  }
-                  );
-
-
-                }catch (e){
+                  });
+                } catch (e) {
                   print(e);
                 }
               },

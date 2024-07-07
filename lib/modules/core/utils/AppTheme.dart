@@ -36,7 +36,7 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: black,
-    primary: white,
+    primary: Colors.black,
     secondary: greySecondary,
   ),
   appBarTheme: const AppBarTheme(

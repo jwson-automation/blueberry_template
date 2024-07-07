@@ -1,14 +1,10 @@
-import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting.dart';
-import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings.design_sample.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/setting/SettingPage.dart';
-import 'package:blueberry_flutter_template/modules/core/views/pages/shopping/ShoppingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../pages/admin/AdminPage.dart';
+
 import '../chat/ChatPage.dart';
-import '../pages/mypage/MyPage.dart';
-import '../pages/shopping/ShoppingPageSample.dart';
-import '../signUp/SignUpPage.dart';
+import '../pages/admin/AdminPage.dart';
+import '../pages/mypage/LoginPage.dart';
 
 /// TopPage.dart
 ///
@@ -28,12 +24,10 @@ class TopPage extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
-      ShoppingPage(),
-      SignUpPage(),
-      MyPage(),
-      const SettingPage(),
+      ChatPage(),
       AdminPage(),
-      MySettings(),
+      SettingPage(),
+      LoginPage(),
     ];
 
     return Scaffold(
@@ -48,28 +42,20 @@ class TopPage extends ConsumerWidget {
         backgroundColor: Colors.blueGrey[100],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: 'shopping',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.messenger_outline),
             label: 'chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'MyPage',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Setting',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_mail_rounded),
             label: 'Admin',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_3),
-            label: 'FixSetting',
+            icon: Icon(Icons.settings),
+            label: 'Setting',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'MyPage',
           ),
         ],
         currentIndex: selectedIndex,

@@ -13,7 +13,7 @@ class AppStringEnglish {
   static const String shoppingPageTitle2 = 'New Arrivals';
   static const String shoppingPageSubTitle2 = 'Check out our latest products.';
 
-  //MyPage.dart
+  //DeleteMyPage.dart
   static const String myPageTitle = 'My Page';
   static const String loginButtonText = 'Log In';
   static const String logoutButtonText = 'Log Out';

@@ -1,4 +1,4 @@
-import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting_divider.dart';
+import 'package:blueberry_flutter_template/modules/core/widgets/CustomDivider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -69,7 +69,7 @@ class _FixSettingNoticeState extends ConsumerState<FixSettingNotice> {
                   controller: _webViewController,
               ) : Container()
             ),
-            FixSettingDivider(),
+            Divider(),
 
             GestureDetector(
               onTap: (){

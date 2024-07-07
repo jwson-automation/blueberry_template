@@ -12,7 +12,7 @@ class AppStrings {
   static const String shoppingPageTitle2 = '신상품';
   static const String shoppingPageSubTitle2 = '최신 제품을 확인하세요.';
 
-  //MyPage.dart
+  //DeleteMyPage.dart
   static const String myPageTitle = '내 페이지';
   static const String loginButtonText = '로그인';
   static const String logoutButtonText = '로그아웃';

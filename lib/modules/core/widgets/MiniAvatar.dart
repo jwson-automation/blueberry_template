@@ -2,8 +2,8 @@ import 'package:blueberry_flutter_template/modules/core/providers/user/ProfileIm
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RoundedAvatar extends ConsumerWidget {
-  const RoundedAvatar({super.key});
+class MiniAvatar extends ConsumerWidget {
+  const MiniAvatar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

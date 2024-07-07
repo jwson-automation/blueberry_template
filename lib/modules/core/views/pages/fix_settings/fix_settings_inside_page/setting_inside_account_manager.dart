@@ -1,5 +1,5 @@
-import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_setting_divider.dart';
-import 'package:blueberry_flutter_template/modules/core/views/pages/fix_settings/fix_settings_widget/fix_settings_small_rounded_avatar.dart';
+import 'package:blueberry_flutter_template/modules/core/widgets/CustomDivider.dart';
+import 'package:blueberry_flutter_template/modules/core/widgets/MiniAvatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,7 +24,7 @@ class _FixSettingAccountManagerState extends ConsumerState<FixSettingAccountMana
             padding: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                RoundedAvatar(),
+                MiniAvatar(),
                 SizedBox(
                   width: 20,
                 ),
@@ -32,7 +32,7 @@ class _FixSettingAccountManagerState extends ConsumerState<FixSettingAccountMana
               ],
             ),
           ),
-          const FixSettingDivider(),
+          const Divider(),
             ListTile(
                 leading: Icon(Icons.call),
                 title: showNumber ? Text("010-1234-5678") : Text("010-**34-56**"),

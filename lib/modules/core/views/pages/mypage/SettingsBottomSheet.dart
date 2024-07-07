@@ -1,23 +1,17 @@
-
 import 'package:blueberry_flutter_template/modules/core/providers/page/page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 class SettingsBottomSheet extends ConsumerStatefulWidget {
-
   SettingsBottomSheet({super.key});
 
-
   @override
-  ConsumerState<SettingsBottomSheet> createState() => _SettingsBottomSheetState();
+  ConsumerState<SettingsBottomSheet> createState() =>
+      _SettingsBottomSheetState();
 }
 
-
 class _SettingsBottomSheetState extends ConsumerState<SettingsBottomSheet> {
-
-
   Future<bool> _requestAlbumPermission() async {
     // 앨범 권한 요청
     PermissionStatus photoStatus = await Permission.photos.request();
@@ -35,7 +29,8 @@ class _SettingsBottomSheetState extends ConsumerState<SettingsBottomSheet> {
         SnackBar(content: Text('앨범 접근 권한이 거부되었습니다.')),
       );
       return false;
-    } else if (photoStatus.isPermanentlyDenied || storageStatus.isPermanentlyDenied) {
+    } else if (photoStatus.isPermanentlyDenied ||
+        storageStatus.isPermanentlyDenied) {
       print("앨범 접근 권한이 영구적으로 거부되었습니다. 설정에서 권한을 허용해주세요.");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('앨범 접근 권한이 영구적으로 거부되었습니다. 설정에서 권한을 허용해주세요.')),
@@ -65,7 +60,7 @@ class _SettingsBottomSheetState extends ConsumerState<SettingsBottomSheet> {
         TextButton(
           onPressed: () async {
             bool hasPermission = await _requestAlbumPermission();
-            if (hasPermission){
+            if (hasPermission) {
               pageNotifier.moveToPAge(2);
               Navigator.pop(context);
             } else {
@@ -74,23 +69,8 @@ class _SettingsBottomSheetState extends ConsumerState<SettingsBottomSheet> {
             }
           },
           child: Text("앨범에서 선택 하기"),
-        ),
-        TextButton(
-          onPressed: () async {
-            bool hasPermission = await _requestAlbumPermission();
-            if (hasPermission){
-              pageNotifier.moveToPAge(3);
-              Navigator.pop(context);
-            } else {
-              pageNotifier.moveToPAge(0);
-              Navigator.pop(context);
-            }
-          },
-          child: Text("디자인 체크"),
-        ),
+        )
       ],
     );
   }
-
 }
-
