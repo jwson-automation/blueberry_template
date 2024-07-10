@@ -15,6 +15,9 @@
 - 플러터 버전을 최신으로 업데이트 해 주세요. `현재버전 : ??` 
 Flutter Version Upgrade
 
+- 앱 빌드를 위한 폴더들을 생성해주세요.
+1. 터미널에 `flutter create .` 입력
+
 - 파이어베이스 설정을 해주세요.
 1. 파이어베이스 프로젝트 생성
 2. - 'curl -sL https://firebase.tools | bash'
