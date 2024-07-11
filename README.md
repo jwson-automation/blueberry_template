@@ -15,14 +15,17 @@
 - 플러터 버전을 최신으로 업데이트 해 주세요. `현재버전 : ??` 
 Flutter Version Upgrade
 
-- 파이어베이스 설정을 해주세요.
-1. 파이어베이스 프로젝트 생성
-2. - 'curl -sL https://firebase.tools | bash'
-   - 'dart pub global activate flutterfire_cli'
-   - `flutterfire configure --project={프로젝트명}'
-   (이것만 해도 앱이 빌드 됩니다.)flutterfire configure --project=blueberrytemplate-2024-summer
+12312312312312
 
-4. Authentication > 시작하기 > 로그인 방법 > 이메일/비밀번호 활성화
+12312
+3
+123
+12
+31
+23
+21
+
+
 5. Firestore Database > 데이터베이스 만들기 > 테스트 모드에서 시작
 6. Storage > 시작하기 > 테스트 모드에서 시작
 
