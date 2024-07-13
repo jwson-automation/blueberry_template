@@ -11,17 +11,17 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: 'Set Flutter 3.10.6'
+      - name: 'Set Flutter Version Latest'
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.10.6
+          flutter-version: latest
 
-      - name: 'Checkout Flutter 3.10.7'
+      - name: 'Checkout Flutter latest'
         shell: bash
         run: |
           cd $FLUTTER_ROOT;
           git fetch --tags;
-          git checkout 3.10.7;
+          git checkout latest;
           flutter --version;
 
       - name: Install dependencies
