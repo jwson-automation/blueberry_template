@@ -1,6 +1,6 @@
 name: Flutter Build test
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   test:
@@ -11,11 +11,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Set up Flutter
+      - name: 'Set Flutter 3.10.6'
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'latest'
-          channel: 'stable'
+          flutter-version: 3.10.6
+
+      - name: 'Checkout Flutter 3.10.7'
+        shell: bash
+        run: |
+          cd $FLUTTER_ROOT;
+          git fetch --tags;
+          git checkout 3.10.7;
+          flutter --version;
 
       - name: Install dependencies
         run: flutter pub get
