@@ -15,7 +15,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'  # 필요한 Flutter 버전을 명시하세요.
+          flutter-version: 'latest'  # 필요한 Flutter 버전을 명시하세요.
 
       - name: Install dependencies
         run: flutter pub get
