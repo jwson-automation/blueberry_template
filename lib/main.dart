@@ -19,7 +19,7 @@ Future<void> main() async {
   OpenAI.apiKey = ""; // OpenAI API Key를 넣어주세요.
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    // options: DefaultFirebaseOptions.currentPlatform,
   );
   await FirebaseCloudMessagingManager.initialize();
 
