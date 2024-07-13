@@ -11,10 +11,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Decode firebase_option
+      - name: Set up Firebase Config
         env:
-          firebase_options_dart: ${{secrets.FIREBASE_OPTION}}
-        run: echo "$firebase_options_dart" > app/lib/firebase_options.dart
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo "${FIREBASE_CONFIG}" > app/lib/firebase_options.dart
 
       - name: 'Set Flutter Version Latest'
         uses: subosito/flutter-action@v2
