@@ -44,7 +44,15 @@
     ```
 4. google-services.json, GoogleService-Info.plist 파일을 프로젝트에 추가해주세요. 
 - `파이어베이스 콘솔 접속 > 프로젝트 설정 > 프로젝트 설정 > 아래로 스크롤 > 내 앱` 에서 다운로드 가능합니다.
-- 주의!!!
+
+    !!주의!!
+
+    3번 항목은 하지말아주세요! `빌드가 불안정하게 변합니다.`
+
+    <img width="500" alt="caution!" src ="https://github.com/user-attachments/assets/911a03ec-a1ca-4054-a36e-b6e4e67f0c7e">
+
+    만약 이미 해버리셨다면 iOS 폴더를 삭제 후 다시 `flutter create .` 해주세요.
+
 
 5. Firebase 기능을 활성화 해주세요.
 ```
