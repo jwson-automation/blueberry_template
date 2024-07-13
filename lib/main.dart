@@ -2,10 +2,13 @@ import 'package:app_links/app_links.dart';
 import 'package:blueberry_flutter_template/globals.dart';
 import 'package:blueberry_flutter_template/modules/core/views/pages/mypage/PasswordResetPage.dart';
 import 'package:dart_openai/dart_openai.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'firebase_options.dart';
+import 'modules/core/notification/firebase_cloud_messaging_manager.dart';
 import 'modules/core/providers/ThemeProvider.dart';
 import 'modules/core/utils/AppStrings.dart';
 import 'modules/core/utils/AppTheme.dart'; // 수정된 AppTheme.dart 파일 import
@@ -17,11 +20,13 @@ Future<void> main() async {
   OpenAI.apiKey = ""; // OpenAI API Key를 넣어주세요.
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 빌드 테스트를 위해 주석 처리
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-  // await FirebaseCloudMessagingManager.initialize();
+  if (!const bool.fromEnvironment('dart.vm.product')) {
+    // 실제 빌드 환경에서는 Firebase 초기화
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await FirebaseCloudMessagingManager.initialize();
+  }
 
   runApp(const MyApp());
 }
