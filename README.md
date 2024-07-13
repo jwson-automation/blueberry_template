@@ -16,6 +16,8 @@
 
 ## 어떻게 빌드하나요?
 
+0. Android Studio, Xcode의 최신화를 해 주세요.
+
 1. 플러터 버전을 최신으로 업데이트 해 주세요. `FVM 설정 예정` 
 - Flutter Version Upgrade
 

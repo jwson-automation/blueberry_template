@@ -1,6 +1,6 @@
 name: Flutter Build test
 
-on: [ push, pull_request ]
+on: [ push ]
 
 jobs:
   test:
@@ -26,6 +26,11 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Set up Firebase Config
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo "${FIREBASE_CONFIG}" > firebase_options.json
 
       - name: Run tests
         run: flutter test
