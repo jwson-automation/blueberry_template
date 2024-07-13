@@ -16,6 +16,8 @@
 
 ## 어떻게 빌드하나요?
 
+0. Android Studio, Xcode의 최신화를 해 주세요.
+
 1. 플러터 버전을 최신으로 업데이트 해 주세요. `FVM 설정 예정` 
 - Flutter Version Upgrade
 
@@ -27,10 +29,37 @@
 - 'curl -sL https://firebase.tools | bash'
 - 'dart pub global activate flutterfire_cli'
 - `flutterfire configure --project={본인의 파이어베이스 프로젝트 명}'
+    ```
+    Which platforms should your configuration support (use arrow keys & space to select)?
+  
+    [v] Android
+    [v] iOS
+    [v] Web 
+  
+    Which Android application id (or package name) do you want to use for this configuration, e.g. 'com.example.app'
+    
+    package name
+    Android : com.blueberry.template
+    ios : com.example.blueberryTemplate
+    ```
+4. google-services.json, GoogleService-Info.plist 파일을 프로젝트에 추가해주세요. 
+- `파이어베이스 콘솔 접속 > 프로젝트 설정 > 프로젝트 설정 > 아래로 스크롤 > 내 앱` 에서 다운로드 가능합니다.
 
-- Authentication > 시작하기 > 로그인 방법 > 이메일/비밀번호 활성화
-- Firestore Database > 데이터베이스 만들기 > 테스트 모드에서 시작
-- Storage > 시작하기 > 테스트 모드에서 시작
+    !!주의!!
+
+    3번 항목은 하지말아주세요! `빌드가 불안정하게 변합니다.`
+
+    <img width="500" alt="caution!" src ="https://github.com/user-attachments/assets/911a03ec-a1ca-4054-a36e-b6e4e67f0c7e">
+
+    만약 이미 해버리셨다면 iOS 폴더를 삭제 후 다시 `flutter create .` 해주세요.
+
+
+5. Firebase 기능을 활성화 해주세요.
+```
+Authentication > 시작하기 > 로그인 방법 > 이메일/비밀번호 활성화
+Firestore Database > 데이터베이스 만들기 > 테스트 모드에서 시작
+Storage > 시작하기 > 테스트 모드에서 시작
+```
 
 ## 참고
 웹 빌드시에는 렌더러를 사용해야 합니다.
