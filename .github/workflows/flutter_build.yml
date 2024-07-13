@@ -1,28 +1,24 @@
-name: Flutter Build
+name: Flutter Build test
 
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
-  build:
+  test:
+    name: Run Flutter Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v3
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'latest'  # 필요한 Flutter 버전을 명시하세요.
+          flutter-version: 'latest'
+          channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk
-
-      - name: Build iOS (if on macOS)
-        if: runner.os == 'macOS'
-        run: flutter build ios --no-codesign
+      - name: Run tests
+        run: flutter test
