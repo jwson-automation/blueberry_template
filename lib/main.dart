@@ -7,7 +7,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'firebase_options.dart';
+// CI Test 환경에서는 Firebase 초기화를 하지 않음
+import 'firebase_options.dart' if (dart.library.io) 'fake_firebase_options.dart';
+
 import 'modules/core/notification/firebase_cloud_messaging_manager.dart';
 import 'modules/core/providers/ThemeProvider.dart';
 import 'modules/core/utils/AppStrings.dart';
@@ -20,8 +22,8 @@ Future<void> main() async {
   OpenAI.apiKey = ""; // OpenAI API Key를 넣어주세요.
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (!const bool.fromEnvironment('dart.vm.product')) {
-    // 실제 빌드 환경에서는 Firebase 초기화
+  if (!const bool.fromEnvironment('CI')) {
+    // CI 테스트 환경이 아닐 때만 Firebase 초기화
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );

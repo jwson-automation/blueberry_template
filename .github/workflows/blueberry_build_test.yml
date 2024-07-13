@@ -29,3 +29,5 @@ jobs:
 
       - name: Run tests
         run: flutter test
+        env:
+          CI: true
