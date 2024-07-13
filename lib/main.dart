@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // CI Test 환경에서는 Firebase 초기화를 하지 않음
-import 'firebase_options.dart' if (dart.library.io) 'firebase_options_ci.dart';
-
+// import 'firebase_options.dart' if (dart.library.io) 'firebase_options_ci.dart';
+import 'firebase_options_ci.dart';
 import 'modules/core/notification/firebase_cloud_messaging_manager.dart';
 import 'modules/core/providers/ThemeProvider.dart';
 import 'modules/core/utils/AppStrings.dart';
