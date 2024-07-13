@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ProviderScope123(
+    return ProviderScope(
       child: Consumer(
         builder: (context, ref, child) {
           // ThemeProvider를 구독하여 다크모드 상태를 가져옴
