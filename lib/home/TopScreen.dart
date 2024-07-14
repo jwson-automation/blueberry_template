@@ -1,3 +1,4 @@
+import 'package:blueberry_flutter_template/screens/chat/ChatScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,6 +22,7 @@ class TopScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
+      ChatScreen(),
       MatchScreen(),
       LoginScreen(),
     ];
@@ -36,6 +38,10 @@ class TopScreen extends ConsumerWidget {
         unselectedIconTheme: const IconThemeData(color: Colors.grey),
         backgroundColor: Colors.blueGrey[100],
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
             label: 'match',

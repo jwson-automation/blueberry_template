@@ -2,8 +2,7 @@ class AppStrings {
   static const String appTitle = '블루베리 플러터 템플릿';
 
   //ChatPage.dart
-  static const String chatPageTitle = '채팅 페이지';
-  static const String chatHint = '여기에 메시지를 입력하세요...';
+  static const String lessonChatScreenTitle = '채팅';
 
   //ShoppingPageSample.dart
   static const String shoppingPageTitle = '쇼핑 페이지';
