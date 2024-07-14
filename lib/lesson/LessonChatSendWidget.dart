@@ -8,8 +8,10 @@ class LessonChatSendWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final firebaseService = FirebaseService();
+
     void _sendChatMessage(String value) async {
-      await FirebaseService().addChatMessage(value);
+      await firebaseService.addChatMessage(value);
       _controller.clear();
     }
 
@@ -22,7 +24,7 @@ class LessonChatSendWidget extends ConsumerWidget {
               controller: _controller,
               decoration: const InputDecoration(
                   hintText: 'Enter message', border: OutlineInputBorder()),
-              onSubmitted: (value) async {
+              onSubmitted: (value) async { // 엔터키가 눌러졌을때 하는 행동
                 value.isEmpty
                     ? null
                     : _sendChatMessage(value);
@@ -31,7 +33,7 @@ class LessonChatSendWidget extends ConsumerWidget {
           ),
           IconButton(
             icon: const Icon(Icons.send),
-            onPressed: () async {
+            onPressed: () async { // 눌러졌을때 행동
               _controller.text.isEmpty
                   ? null
                   : _sendChatMessage(_controller.text);

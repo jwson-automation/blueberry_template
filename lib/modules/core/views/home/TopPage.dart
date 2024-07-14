@@ -2,6 +2,7 @@ import 'package:blueberry_flutter_template/lesson/LessonScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../lesson/ChatScreen.dart';
 import '../../../../lesson/LessonCanvasScreen.dart';
 import '../../../../lesson/LessonChatScreen.dart';
 import '../chat/ChatPage.dart';
@@ -26,7 +27,7 @@ class TopPage extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
-      LessonChatScreen(), // LessonScreen(
+      ChatScreen(), // LessonScreen(
       LessonCanvasScreen(),
       AdminPage(),
       LoginPage(),
