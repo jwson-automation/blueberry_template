@@ -1,6 +1,8 @@
+import 'package:blueberry_flutter_template/lesson/LessonScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../lesson/LessonChatScreen.dart';
 import '../chat/ChatPage.dart';
 import '../pages/admin/AdminPage.dart';
 import '../pages/mypage/LoginPage.dart';
@@ -23,6 +25,7 @@ class TopPage extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
+      LessonChatScreen(), // LessonScreen(
       ChatPage(),
       AdminPage(),
       LoginPage(),
@@ -39,6 +42,10 @@ class TopPage extends ConsumerWidget {
         unselectedIconTheme: const IconThemeData(color: Colors.grey),
         backgroundColor: Colors.blueGrey[100],
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Lesson',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.messenger_outline),
             label: 'chat',
