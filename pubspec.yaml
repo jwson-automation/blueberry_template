@@ -58,6 +58,9 @@ dependencies:
   transparent_image: ^2.0.1
   photo_manager_image_provider: ^2.1.1
 
+  # Match
+  flutter_card_swiper: ^7.0.1
+
   # FCM
   permission_handler: ^11.3.1
   firebase_messaging: ^14.9.4
