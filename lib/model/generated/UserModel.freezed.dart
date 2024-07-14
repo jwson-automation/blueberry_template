@@ -171,7 +171,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
-  _$UserModelImpl(
+  const _$UserModelImpl(
       {required this.userId,
       required this.name,
       required this.email,
@@ -237,7 +237,7 @@ class _$UserModelImpl implements _UserModel {
 }
 
 abstract class _UserModel implements UserModel {
-  factory _UserModel(
+  const factory _UserModel(
       {required final String userId,
       required final String name,
       required final String email,
