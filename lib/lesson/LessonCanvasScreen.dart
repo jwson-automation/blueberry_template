@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 
-class LessonCanvasScreen extends StatefulWidget {
-  const LessonCanvasScreen({super.key});
+import 'FirebaseService.dart';
+import 'LessonCanvasWidget.dart';
 
-  @override
-  State<LessonCanvasScreen> createState() => _LessonCanvasScreenState();
-}
+class LessonCanvasScreen extends StatelessWidget {
+  LessonCanvasScreen({super.key});
 
-class _LessonCanvasScreenState extends State<LessonCanvasScreen> {
+  final firebaseservice = FirebaseService();
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        body: LessonCanvasWidget(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            firebaseservice.clearPoints();
+          },
+          child: const Icon(Icons.add),
+        ));
   }
 }
