@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../modules/core/utils/AppStrings.dart';
 import 'LessonListProvider.dart';
 
 class LessonListView extends ConsumerWidget {
@@ -14,7 +15,7 @@ class LessonListView extends ConsumerWidget {
         itemCount: _list.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text('Item ${_list[index]}'),
+            title: Text('${AppStrings.lessonScreenTitle} ${_list[index]}'),
           );
         });
   }

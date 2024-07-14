@@ -1,6 +1,13 @@
 class AppStrings {
   static const String appTitle = '블루베리 플러터 템플릿';
 
+  //LessonScreen.dart
+  static const String lessonScreenTitle = '수업용 리스트';
+  static const String lessonScreenListDescription = '아이템 :';
+
+  //LessonChatScreen.dart
+  static const String lessonChatScreenTitle = '수업용 채팅 리스트';
+
   //ChatPage.dart
   static const String chatPageTitle = '채팅 페이지';
   static const String chatHint = '여기에 메시지를 입력하세요...';
