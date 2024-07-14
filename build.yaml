@@ -6,9 +6,9 @@ targets:
           - lib/model/**.dart
         options:
           build_extensions:
-            '^lib/model/{{}}.dart': 'lib/generated/{{}}.g.dart'
+            '^lib/model/{{}}.dart': 'lib/model/generated/{{}}.g.dart'
       freezed|freezed:
         enabled: true
         options:
           build_extensions:
-            '^lib/model/{{}}.dart': 'lib/generated/{{}}.freezed.dart'
+            '^lib/model/{{}}.dart': 'lib/model/generated/{{}}.freezed.dart'
