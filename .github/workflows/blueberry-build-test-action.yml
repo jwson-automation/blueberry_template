@@ -1,4 +1,4 @@
-name: Flutter Build test
+name: blueberry-build-test-action
 
 on: [ push ]
 
@@ -29,3 +29,5 @@ jobs:
 
       - name: Run tests
         run: flutter test
+        env:
+          CI: true
