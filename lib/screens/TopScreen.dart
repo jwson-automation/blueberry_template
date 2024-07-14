@@ -2,8 +2,8 @@ import 'package:blueberry_flutter_template/screens/chat/ChatScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../screens/match/MatchScreen.dart';
-import '../screens/mypage/LoginScreen.dart';
+import 'match/MatchScreen.dart';
+import 'mypage/LoginScreen.dart';
 
 /// TopScreen.dart
 ///

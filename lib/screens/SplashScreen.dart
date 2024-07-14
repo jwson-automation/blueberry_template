@@ -1,4 +1,4 @@
-import 'package:blueberry_flutter_template/home/TopScreen.dart';
+import 'package:blueberry_flutter_template/screens/TopScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart'; // kIsWeb 상수 사용
 import 'package:flutter/material.dart';
