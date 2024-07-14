@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:blueberry_flutter_template/lesson/FirebaseService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,14 +6,26 @@ import 'LessonCanvasProvider.dart'; // lessonCanvasProvider
 
 class LessonCanvasWidget extends StatelessWidget {
   final firebaseservice = FirebaseService();
+  Offset? _startPosition;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onPanDown: (details) {
+        RenderBox renderBox = context.findRenderObject() as RenderBox;
+        _startPosition = renderBox.globalToLocal(details.globalPosition);
+      },
       onPanUpdate: (details) {
         RenderBox renderBox = context.findRenderObject() as RenderBox;
-        Offset localPosition = renderBox.globalToLocal(details.globalPosition);
-        firebaseservice.addPoint(localPosition);
+        Offset endPosition = renderBox.globalToLocal(details.globalPosition);
+
+        if (_startPosition != null) {
+          firebaseservice.addLine(_startPosition!, endPosition);
+          _startPosition = endPosition; // Update start position
+        }
+      },
+      onPanEnd: (details) {
+        _startPosition = null;
       },
       child: Consumer(
         builder: (context, ref, _) {
@@ -30,7 +40,7 @@ class LessonCanvasWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildCanvas(List<Offset> points) {
+  Widget _buildCanvas(List<Map<String, Offset>> points) {
     return CustomPaint(
       painter: DrawingPainter(points),
       child: Container(
@@ -42,9 +52,9 @@ class LessonCanvasWidget extends StatelessWidget {
 }
 
 class DrawingPainter extends CustomPainter {
-  final List<Offset> points;
+  final List<Map<String, Offset>> lines;
 
-  DrawingPainter(this.points);
+  DrawingPainter(this.lines);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -53,12 +63,10 @@ class DrawingPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 5.0;
 
-    for (int i = 0; i < points.length - 1; i++) {
-      if (i > 0) {
-        // 현재 점과 이전 점을 연결하여 선을 그리는 것이 아니라,
-        // 각 점을 개별적으로 그립니다.
-        canvas.drawPoints(PointMode.points, [points[i]], paint);
-      }
+    for (var line in lines) {
+      Offset start = line['start'] ?? Offset.zero;
+      Offset end = line['end'] ?? Offset.zero;
+      canvas.drawLine(start, end, paint);
     }
   }
 

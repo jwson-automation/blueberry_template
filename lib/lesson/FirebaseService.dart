@@ -46,4 +46,33 @@ class FirebaseService {
       rethrow;
     }
   }
+
+  // LessonCanvasWidget.dart
+  Future<void> addLine(Offset start, Offset end) async {
+    try {
+      await _firestore.collection('lines').add({
+        'startX': start.dx,
+        'startY': start.dy,
+        'endX': end.dx,
+        'endY': end.dy,
+        'timestamp': DateTime.now(),
+      });
+    } catch (e) {
+      print('Error adding line: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> clearLines() async {
+    try {
+      QuerySnapshot snapshot = await _firestore.collection('lines').get();
+      List<DocumentReference> references = snapshot.docs.map((doc) => doc.reference).toList();
+      references.forEach((ref) async {
+        await ref.delete();
+      });
+    } catch (e) {
+      print('Error clearing lines: $e');
+      rethrow;
+    }
+  }
 }
