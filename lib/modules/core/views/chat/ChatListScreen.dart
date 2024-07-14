@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ChatListWidget extends StatefulWidget {
+class ChatListScreen extends StatefulWidget {
   final List chatList;
   final String recentMesssage;
   final DateTime recentChatTime;
   final String? chatPhotoPath;
-  const ChatListWidget({super.key, required this.chatList, required this.recentMesssage, required this.recentChatTime, this.chatPhotoPath});
+  const ChatListScreen({super.key, required this.chatList, required this.recentMesssage, required this.recentChatTime, this.chatPhotoPath});
 
   @override
-  State<ChatListWidget> createState() => _ChatListWidgetState();
+  State<ChatListScreen> createState() => _ChatListScreenState();
 }
 
-class _ChatListWidgetState extends State<ChatListWidget> {
+class _ChatListScreenState extends State<ChatListScreen> {
 
   @override
   Widget build(BuildContext context) {
