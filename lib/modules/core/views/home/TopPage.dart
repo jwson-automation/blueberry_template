@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../pages/freindsList/FriendsListPage.dart';
 import '../chat/ChatPage.dart';
 import '../pages/admin/AdminPage.dart';
 import '../pages/mypage/LoginPage.dart';
@@ -23,6 +24,7 @@ class TopPage extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
+      FriendsListPage(),
       ChatPage(),
       AdminPage(),
       LoginPage(),
@@ -39,6 +41,11 @@ class TopPage extends ConsumerWidget {
         unselectedIconTheme: const IconThemeData(color: Colors.grey),
         backgroundColor: Colors.blueGrey[100],
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            // 친구 목록 임시로 앱바에 추가
+            icon: Icon(Icons.people),
+            label: 'friendsList',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.messenger_outline),
             label: 'chat',
@@ -59,3 +66,4 @@ class TopPage extends ConsumerWidget {
     );
   }
 }
+
