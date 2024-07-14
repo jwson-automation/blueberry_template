@@ -14,7 +14,7 @@ jobs:
       - name: Decode firebase_option
         env:
           firebase_options_dart: ${{secrets.FIREBASE_OPTION}}
-        run: echo "$firebase_options_dart" > app/lib/firebase_options.dart
+        run: echo "$firebase_options_dart" > lib/firebase_options.dart
 
       - name: 'Set Flutter Version Latest'
         uses: subosito/flutter-action@v2
