@@ -1,3 +1,4 @@
+import 'package:blueberry_flutter_template/modules/core/views/match/MatchScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,6 +24,7 @@ class TopPage extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
+      MatchScreen(),
       ChatPage(),
       AdminPage(),
       LoginPage(),
@@ -39,6 +41,10 @@ class TopPage extends ConsumerWidget {
         unselectedIconTheme: const IconThemeData(color: Colors.grey),
         backgroundColor: Colors.blueGrey[100],
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pets),
+            label: 'match',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.messenger_outline),
             label: 'chat',
