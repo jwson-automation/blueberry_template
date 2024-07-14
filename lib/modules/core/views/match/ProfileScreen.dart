@@ -1,10 +1,10 @@
 import 'package:blueberry_flutter_template/modules/core/views/match/model/DogProfileModel.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfileScreen extends StatelessWidget {
   final DogProfileModel dogProfile;
 
-  const ProfilePage({super.key, required this.dogProfile});
+  const ProfileScreen({super.key, required this.dogProfile});
 
   @override
   Widget build(BuildContext context) {

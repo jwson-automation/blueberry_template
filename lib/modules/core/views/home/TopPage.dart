@@ -1,4 +1,4 @@
-import 'package:blueberry_flutter_template/modules/core/views/match/MatchPage.dart';
+import 'package:blueberry_flutter_template/modules/core/views/match/MatchScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,7 +24,7 @@ class TopPage extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
-      MatchPage(),
+      MatchScreen(),
       ChatPage(),
       AdminPage(),
       LoginPage(),

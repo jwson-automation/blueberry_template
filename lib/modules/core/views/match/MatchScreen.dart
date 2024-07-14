@@ -2,7 +2,7 @@ import 'package:blueberry_flutter_template/modules/core/views/match/widget/Swipe
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
-import 'ProfilePage.dart';
+import 'ProfileScreen.dart';
 import 'model/DogProfileModel.dart';
 
 ///  MatchPage - 프로필 스와이프 매칭 화면
@@ -11,14 +11,14 @@ import 'model/DogProfileModel.dart';
 ///  - CardSwiper: 프로필 카드를 스와이프할 수 있는 메인 위젯
 ///  - FloatingActionButton: 수동으로 좌/우 스와이프를 할 수 있는 버튼
 
-class MatchPage extends StatefulWidget {
-  const MatchPage({super.key});
+class MatchScreen extends StatefulWidget {
+  const MatchScreen({super.key});
 
   @override
-  State<MatchPage> createState() => _MatchPageState();
+  State<MatchScreen> createState() => _MatchScreenState();
 }
 
-class _MatchPageState extends State<MatchPage> {
+class _MatchScreenState extends State<MatchScreen> {
   final CardSwiperController controller = CardSwiperController();
   final cards = dogProfiles.map(SwiperCard.new).toList();
 
@@ -67,7 +67,7 @@ class _MatchPageState extends State<MatchPage> {
     if (direction == CardSwiperDirection.right) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => ProfilePage(dogProfile: dogProfiles[previousIndex]),
+          builder: (context) => ProfileScreen(dogProfile: dogProfiles[previousIndex]),
         ),
       );
     }
