@@ -12,13 +12,8 @@ class _LessonScreenState extends State<LessonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Center(child: LessonListView()),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('FloatingActionButton pressed');
-          },
-          child: Icon(Icons.add),
-        ));
+      appBar: AppBar(),
+      body: Center(child: LessonListView()),
+    );
   }
 }
