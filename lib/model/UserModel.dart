@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'generated/UserModel.freezed.dart';
 part 'generated/UserModel.g.dart';
 
+// TODO :  User Class 추가
+
 @freezed
 class UserModel with _$UserModel {
   const factory UserModel({
