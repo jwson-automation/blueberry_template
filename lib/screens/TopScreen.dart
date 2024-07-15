@@ -1,4 +1,5 @@
 import 'package:blueberry_flutter_template/screens/chat/ChatScreen.dart';
+import 'package:blueberry_flutter_template/screens/mbti/MBTIMainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,6 +25,7 @@ class TopScreen extends ConsumerWidget {
     final List<Widget> pages = [
       ChatScreen(),
       MatchScreen(),
+      MBTIMainScreen(),
       LoginScreen(),
     ];
 
@@ -45,6 +47,10 @@ class TopScreen extends ConsumerWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
             label: 'match',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_search),
+            label: 'mbti',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
