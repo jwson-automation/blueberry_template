@@ -1,6 +1,7 @@
 // AdminPage.dart
 import 'dart:io';
 
+import 'package:easy_engine/easy_engine.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,17 +17,17 @@ import 'UploadEventDialog.dart';
 import 'UploadItemDialog.dart';
 import '../../../utils/DialogHelpers.dart';
 
-/**
- * AdminPage.dart
- *
- * Admin Page
- * - 관리자 페이지
- * - 임시 데이터 생성 및 업로드를 위한 화면
- *
- * @jwson-automation
- */
+/// AdminPage.dart
+///
+/// Admin Page
+/// - 관리자 페이지
+/// - 임시 데이터 생성 및 업로드를 위한 화면
+///
+/// @jwson-automation
 
 class AdminPage extends ConsumerWidget {
+  const AdminPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final firestoreService = ref.watch(firebaseStoreServiceProvider);
@@ -40,6 +41,9 @@ class AdminPage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const ClaimAdminButton(
+              region: 'asia-northeast3',
+            ),
             _makeTmpUserButtons(firestoreService, context),
             const SizedBox(height: 20),
             _makeTmpItemButtons(firestoreService, context),
@@ -130,9 +134,9 @@ Widget _uploadBannerImageButtons(FirestoreService firestoreService,
       try {
         var imageUrl = '';
         if (kIsWeb) {
-          final ImagePicker _picker = ImagePicker();
+          final ImagePicker picker = ImagePicker();
           final XFile? image =
-              await _picker.pickImage(source: ImageSource.gallery);
+              await picker.pickImage(source: ImageSource.gallery);
 
           image?.readAsBytes().then((value) async {
             imageUrl = await firebaseStorageService.uploadImageFromWeb(

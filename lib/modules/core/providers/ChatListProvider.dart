@@ -2,15 +2,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../dto/ChatDto.dart';
 
-/**
- * ChatListProvider.dart
- *
- * Chat List Provider
- * - 채팅 리스트를 관리하는 StateProvider
- * - ChatStateNotifier: 채팅 리스트를 관리하는 StateNotifier
- *
- * @jwson-automation
- */
+/// ChatListProvider.dart
+///
+/// Chat List Provider
+/// - 채팅 리스트를 관리하는 StateProvider
+/// - ChatStateNotifier: 채팅 리스트를 관리하는 StateNotifier
+///
+/// @jwson-automation
 
 final categoryProvider = StateProvider<String>((ref) => 'All');
 
@@ -32,7 +30,7 @@ class ChatStateNotifier extends StateNotifier<List<ChatDTO>> {
         .snapshots() // get이라면 그냥 snapshot은 소켓
         .map((snapshot) {
       return snapshot.docs.map((doc) {
-        return ChatDTO.fromMap(doc.data() as Map<String, dynamic>, doc.id);
+        return ChatDTO.fromMap(doc.data(), doc.id);
       }).toList();
     });
     _messagesStream.listen((messages) {
@@ -40,11 +38,11 @@ class ChatStateNotifier extends StateNotifier<List<ChatDTO>> {
     });
   }
 
-  void addMessage(ChatDTO message, String _categoty) {
+  void addMessage(ChatDTO message, String categoty) async {
     print('Adding message: ${message.message}');
-    _firestore
+    await _firestore
         .collection('messages')
-        .doc(_categoty)
+        .doc(categoty)
         .collection('messages')
         .add(message.toMap());
   }

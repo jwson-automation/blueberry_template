@@ -5,11 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "iPhone 15 Pro Max - iOS Simulator",
+            "name": "iPhone 15 Pro Max",
             "request": "launch",
             "type": "dart",
             "deviceId": "iPhone 15 Pro Max",
             "program": "lib/main.dart"
+        },
+        {
+            "name": "JaeHo - ClaimAdmin - iPhone 15 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone 15 Pro Max",
+            "program": "lib/apps/jaeho/claim_admin.main.dart"
         },
         {
             "name": "Simulator",

@@ -5,46 +5,46 @@ import '../../providers/ChatListProvider.dart'; // chatProvider가 정의된 곳
 import '../../providers/user/UserInfoProvider.dart';
 import '../../utils/AppStrings.dart';
 
-/**
- * ChatPage.dart
- *
- * Chat Page
- * - 채팅 화면
- * - 카테고리별 채팅 메시지를 보여주는 화면
- *
- * @jwson-automation
- */
+/// ChatPage.dart
+///
+/// Chat Page
+/// - 채팅 화면
+/// - 카테고리별 채팅 메시지를 보여주는 화면
+///
+/// @jwson-automation
 
 class ChatPage extends ConsumerWidget {
   final TextEditingController _controller = TextEditingController();
 
+  ChatPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _categoryList = ['All', 'Friends', 'Family', 'Work'];
-    final _selectedCategory = ref.watch(categoryProvider);
-    final _messages = ref.watch(chatListProvider);
-    final _nickname = ref.watch(userInfoNotifierProvider);
+    final categoryList = ['All', 'Friends', 'Family', 'Work'];
+    final selectedCategory = ref.watch(categoryProvider);
+    final messages = ref.watch(chatListProvider);
+    final nickname = ref.watch(userInfoNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.chatPageTitle),
+        title: const Text(AppStrings.chatPageTitle),
       ),
       body: SafeArea(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 50,
               child: ScrollConfiguration(
                 behavior: MyCustomScrollBehavior(),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    for (var category in _categoryList)
+                    for (var category in categoryList)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4.0),
                         child: ChoiceChip(
                           label: Text(category),
-                          selected: _selectedCategory == category.toLowerCase(),
+                          selected: selectedCategory == category.toLowerCase(),
                           onSelected: (bool selected) {
                             ref.read(categoryProvider.notifier).state =
                                 category.toLowerCase();
@@ -52,7 +52,7 @@ class ChatPage extends ConsumerWidget {
                           selectedColor: Colors.blue,
                           backgroundColor: Colors.grey[300],
                           labelStyle: TextStyle(
-                              color: _selectedCategory == category.toLowerCase()
+                              color: selectedCategory == category.toLowerCase()
                                   ? Colors.white
                                   : Colors.black),
                         ),
@@ -63,9 +63,9 @@ class ChatPage extends ConsumerWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: _messages.length,
+                itemCount: messages.length,
                 itemBuilder: (context, index) {
-                  final message = _messages[index];
+                  final message = messages[index];
                   return _buildChatBubble(message, "nickname");
                 },
               ),
@@ -89,14 +89,14 @@ class ChatPage extends ConsumerWidget {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.send),
+                    icon: const Icon(Icons.send),
                     onPressed: () {
                       if (_controller.text.isNotEmpty) {
-                        print('_nickname: ${_nickname.name}');
+                        print('_nickname: ${nickname.name}');
                         ChatDTO newMessage = ChatDTO(
                           chatId: UniqueKey().toString(),
                           // Example, needs proper implementation
-                          senderId: _nickname.name,
+                          senderId: nickname.name,
                           // Example, needs authentication context
                           message: _controller.text,
                           timestamp: DateTime
@@ -104,7 +104,7 @@ class ChatPage extends ConsumerWidget {
                         );
                         ref
                             .read(chatListProvider.notifier)
-                            .addMessage(newMessage, _selectedCategory);
+                            .addMessage(newMessage, selectedCategory);
                         _controller.clear();
                       }
                     },
@@ -125,20 +125,20 @@ class ChatPage extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(12.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.blue[100],
             ),
             child: Text(
               message.message,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
                 color: Colors.black87,
               ),
             ),
           ),
-          SizedBox(height: 4.0), // 유저 아이디와 날짜 사이의 간격 조절
+          const SizedBox(height: 4.0), // 유저 아이디와 날짜 사이의 간격 조절
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

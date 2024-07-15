@@ -25,7 +25,7 @@ class TopPage extends ConsumerWidget {
     final List<Widget> pages = [
       ChatPage(),
       AdminPage(),
-      LoginPage(),
+      const LoginPage(),
     ];
 
     return Scaffold(
