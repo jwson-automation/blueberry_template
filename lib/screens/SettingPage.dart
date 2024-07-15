@@ -1,4 +1,5 @@
 import 'package:blueberry_flutter_template/screens/OssLicensesScreen.dart';
+import 'package:easy_engine/easy_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/NotificationProvider.dart';
@@ -66,6 +67,10 @@ class SettingPage extends ConsumerWidget {
               ),
               onPressed: () {},
               child: const Text('Account delete'),
+            ),
+            const SizedBox(height: 40),
+            const ClaimAdminButton(
+              region: 'asia-northeast3',
             ),
             const SizedBox(height: 40),
             SwitchListTile(
