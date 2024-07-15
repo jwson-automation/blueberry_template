@@ -1,15 +1,13 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../services/FirebaseService.dart';
 
-class ChatSendWidget extends ConsumerWidget {
+class ChatSendWidget extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final firebaseService = FirebaseService();
 
     void _sendChatMessage(String value) async {
