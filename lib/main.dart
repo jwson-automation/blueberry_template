@@ -1,66 +1,30 @@
-import 'package:app_links/app_links.dart';
-import 'package:blueberry_flutter_template/globals.dart';
-import 'package:blueberry_flutter_template/modules/core/views/pages/mypage/PasswordResetPage.dart';
+import 'package:blueberry_flutter_template/screens/mypage/password/PasswordResetPage.dart';
+import 'package:blueberry_flutter_template/screens/TopScreen.dart';
+import 'package:blueberry_flutter_template/utils/AppStrings.dart';
+import 'package:blueberry_flutter_template/utils/ResponsiveLayoutBuilder.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// CI Test 환경에서는 Firebase 초기화를 하지 않음
-import 'firebase_options.dart' if (dart.library.io) 'firebase_options_ci.dart';
-
-import 'modules/core/notification/firebase_cloud_messaging_manager.dart';
-import 'modules/core/providers/ThemeProvider.dart';
-import 'modules/core/utils/AppStrings.dart';
-import 'modules/core/utils/AppTheme.dart'; // 수정된 AppTheme.dart 파일 import
-import 'modules/core/utils/ResponsiveLayoutBuilder.dart';
-import 'modules/core/views/home/TopPage.dart';
-import 'modules/core/views/splashScreen/SplashScreen.dart'; // SplashScreen import
+import 'firebase_options.dart';
+import 'providers/ThemeProvider.dart';
+import 'screens/SplashScreen.dart';
+import 'utils/AppTheme.dart';
 
 Future<void> main() async {
   OpenAI.apiKey = ""; // OpenAI API Key를 넣어주세요.
   WidgetsFlutterBinding.ensureInitialized();
-
-  if (!const bool.fromEnvironment('CI')) {
-    // CI 테스트 환경이 아닐 때만 Firebase 초기화
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    // await FirebaseCloudMessagingManager.initialize();
-  }
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // await FirebaseCloudMessagingManager.initialize();
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-    if (kIsWeb == false) {
-      final appLinks = AppLinks(); // AppLinks is singleton
-
-      /// Subscribe to all events (initial link and further)
-      appLinks.uriLinkStream.listen((uri) {
-        if (uri.queryParameters['mode'] == 'resetPassword') {
-          Navigator.of(navigatorKey.currentState!.context).push(
-            MaterialPageRoute(
-              builder: (context) => PasswordResetPage(
-                params: uri.queryParameters,
-              ),
-            ),
-          );
-        }
-      });
-    }
-  }
 
   // This widget is the root of your application.
   @override
@@ -85,7 +49,7 @@ class _MyAppState extends State<MyApp> {
             home: kIsWeb
                 ? ResponsiveLayoutBuilder(
                     context,
-                    const TopPage(),
+                    const TopScreen(),
                   )
                 : const SplashScreen(),
           );
