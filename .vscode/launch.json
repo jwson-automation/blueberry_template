@@ -12,6 +12,13 @@
             "program": "lib/main.dart"
         },
         {
+            "name": "iPhone11ProMax",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone11ProMax",
+            "program": "lib/main.dart"
+        },
+        {
             "name": "Simulator",
             "request": "launch",
             "type": "dart",

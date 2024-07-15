@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/camera/page_provider.dart';
@@ -38,10 +40,10 @@ class LoginScreen extends ConsumerWidget {
         data: (user) => user != null
             ? PageView(
                 controller: pageState.pageController,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
-                    MyPageScreen(),
-                    ProfileCameraPage(),
+                    const MyPageScreen(),
+                    const ProfileCameraPage(),
                     ProfileGalleryPage(),
                   ])
             : _buildLogin(context, ref),
@@ -100,7 +102,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
             },
           ),
 
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -132,7 +134,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text(AppStrings.errorTitle),
+                            title: const Text(AppStrings.errorTitle),
                             content: Text('에러: $e'),
                             actions: [
                               TextButton(
@@ -157,7 +159,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
                   context,
                   MaterialPageRoute(builder: (context) => const SignUpScreen()),
                 ),
-                child: Text(
+                child: const Text(
                   AppStrings.signUpButtonText,
                   style: TextStyle(color: Colors.blue),
                 ),
@@ -196,6 +198,23 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
                   onTap: () => AuthService().signInWithGithub(),
                   imagePath: 'assets/login_page_images/github.png'),
             ],
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              // Trigger the sign-in flow
+              final LoginResult loginResult =
+                  await FacebookAuth.instance.login();
+
+              // Create a credential from the access token
+              final OAuthCredential facebookAuthCredential =
+                  FacebookAuthProvider.credential(
+                      loginResult.accessToken!.token);
+
+              // Once signed in, return the UserCredential
+              FirebaseAuth.instance
+                  .signInWithCredential(facebookAuthCredential);
+            },
+            child: const Text('Facebook Login'),
           ),
         ],
       ),
