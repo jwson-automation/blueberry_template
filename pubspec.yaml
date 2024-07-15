@@ -1,11 +1,11 @@
 name: blueberry_flutter_template
 description: "flutter-template"
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.1 <4.0.0'
+  sdk: ">=3.3.1 <4.0.0"
 
 dependencies:
   flutter:
@@ -26,11 +26,11 @@ dependencies:
   json_annotation: ^4.9.0
 
   # Firebase
-  firebase_auth: ^4.19.2
-  firebase_core: ^2.32.0
-  firebase_storage: ^11.7.4
-  firebase_analytics: ^10.10.6
-  cloud_firestore: ^4.17.2
+  firebase_auth: ^5.1.1
+  firebase_core: ^3.1.1
+  firebase_storage: ^12.1.0
+  firebase_analytics: ^11.1.0
+  cloud_firestore: ^5.0.2
 
   # UI
   cupertino_icons: ^1.0.6
@@ -63,9 +63,10 @@ dependencies:
 
   # FCM
   permission_handler: ^11.3.1
-  firebase_messaging: ^14.9.4
+  firebase_messaging: 15.0.2
   flutter_local_notifications: ^17.2.1
   flutter_secure_storage: ^4.2.1
+  easy_engine: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -76,7 +77,6 @@ dev_dependencies:
   json_serializable: ^6.8.0
 
 flutter:
-
   uses-material-design: true
   assets:
     - assets/
@@ -85,7 +85,6 @@ flutter:
     - assets/700x150/
     - assets/logo/
     - assets/login_page_images/
-
 
 # Run Commands to generate splash screen
 # 1) flutter clean
