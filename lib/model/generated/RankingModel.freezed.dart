@@ -25,12 +25,8 @@ mixin _$RankingModel {
   int get score => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this RankingModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RankingModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RankingModelCopyWith<RankingModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,8 +50,6 @@ class _$RankingModelCopyWithImpl<$Res, $Val extends RankingModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RankingModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -104,8 +98,6 @@ class __$$RankingModelImplCopyWithImpl<$Res>
       _$RankingModelImpl _value, $Res Function(_$RankingModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RankingModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -173,13 +165,11 @@ class _$RankingModelImpl implements _RankingModel {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, userId, rank, score, updatedAt);
 
-  /// Create a copy of RankingModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RankingModelImplCopyWith<_$RankingModelImpl> get copyWith =>
@@ -211,11 +201,8 @@ abstract class _RankingModel implements RankingModel {
   int get score;
   @override
   DateTime get updatedAt;
-
-  /// Create a copy of RankingModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RankingModelImplCopyWith<_$RankingModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
