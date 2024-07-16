@@ -26,11 +26,11 @@ dependencies:
   json_annotation: ^4.9.0
 
   # Firebase
-  firebase_auth: ^4.19.2
-  firebase_core: ^2.32.0
-  firebase_storage: ^11.7.4
-  firebase_analytics: ^10.10.6
-  cloud_firestore: ^4.17.2
+  firebase_auth: ^5.1.1
+  firebase_core: ^3.1.1
+  firebase_storage: ^12.1.0
+  firebase_analytics: ^11.1.0
+  cloud_firestore: ^5.0.2
 
   # UI
   cupertino_icons: ^1.0.6
@@ -63,12 +63,13 @@ dependencies:
 
   # FCM
   permission_handler: ^11.3.1
-  firebase_messaging: ^14.9.4
+  firebase_messaging: ^15.0.2
   flutter_local_notifications: ^17.2.1
   flutter_secure_storage: ^4.2.1
 
   # Delete account
   easy_engine: ^0.0.4
+  cloud_functions: ^5.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
