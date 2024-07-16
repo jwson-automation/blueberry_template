@@ -50,14 +50,14 @@ class MyPageScreen extends ConsumerWidget {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             const CustomDivider(),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => FixSettingAccountManager(),
+                  builder: (context) => const FixSettingAccountManager(),
                 ));
               },
               child: const Expanded(
@@ -121,7 +121,7 @@ class MyPageScreen extends ConsumerWidget {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => FixSettingCameraMediaPage(),
+                  builder: (context) => const FixSettingCameraMediaPage(),
                 ));
               },
               child: const Expanded(
@@ -140,7 +140,7 @@ class MyPageScreen extends ConsumerWidget {
             GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SettingPage();
+                  return const SettingPage();
                 }));
               },
               child: const Expanded(
@@ -167,6 +167,25 @@ class MyPageScreen extends ConsumerWidget {
                   style: TextStyle(fontSize: 20),
                 ),
               )),
+            ),
+
+            ElevatedButton(
+              onPressed: () async {
+                // Trigger the sign-in flow
+                final LoginResult loginResult =
+                    await FacebookAuth.instance.login();
+
+                // Create a credential from the access token
+                final OAuthCredential facebookAuthCredential =
+                    FacebookAuthProvider.credential(
+                  loginResult.accessToken!.token,
+                );
+
+                // Once signed in, return the UserCredential
+                FirebaseAuth.instance
+                    .signInWithCredential(facebookAuthCredential);
+              },
+              child: const Text('Facebook Login'),
             ),
           ],
         ),
@@ -215,7 +234,7 @@ class MyPageScreen extends ConsumerWidget {
                         builder: (context) {
                           return Padding(
                             padding: MediaQuery.of(context).viewInsets,
-                            child: Container(
+                            child: SizedBox(
                               height: 150,
                               child: SettingsBottomSheet(),
                             ),
@@ -232,7 +251,7 @@ class MyPageScreen extends ConsumerWidget {
 
 Widget _uploadProfileImageButtons(FirestoreService firestoreService,
     FirebaseStorageService firebaseStorageService, BuildContext context) {
-  final _userId = FirebaseAuth.instance.currentUser!.uid;
+  final userId = FirebaseAuth.instance.currentUser!.uid;
 
   return IconButton(
       onPressed: () async {
@@ -240,16 +259,16 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
           var imageUrl = '';
 
           if (kIsWeb) {
-            final ImagePicker _picker = ImagePicker();
+            final ImagePicker picker = ImagePicker();
             final XFile? image =
-                await _picker.pickImage(source: ImageSource.gallery);
+                await picker.pickImage(source: ImageSource.gallery);
 
             image?.readAsBytes().then((value) async {
               imageUrl = await firebaseStorageService.uploadImageFromWeb(
                   value, ImageType.profileimage,
-                  fixedFileName: _userId);
+                  fixedFileName: userId);
 
-              firestoreService.createProfileIamge(_userId, imageUrl);
+              firestoreService.createProfileIamge(userId, imageUrl);
             });
           }
           if (!kIsWeb) {
@@ -259,9 +278,9 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
               // 선택된 이미지를 Firebase Storage에 업로드
               imageUrl = await firebaseStorageService.uploadImageFromApp(
                   File(pickedFile.path), ImageType.profileimage,
-                  fixedFileName: _userId);
+                  fixedFileName: userId);
 
-              firestoreService.createProfileIamge(_userId, imageUrl);
+              firestoreService.createProfileIamge(userId, imageUrl);
             }
           }
           if (imageUrl != '') {
@@ -271,5 +290,5 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
           }
         } catch (e) {}
       },
-      icon: Icon(Icons.settings));
+      icon: const Icon(Icons.settings));
 }
