@@ -31,6 +31,7 @@ dependencies:
   firebase_storage: ^12.1.0
   firebase_analytics: ^11.1.0
   cloud_firestore: ^5.0.2
+  cloud_functions: ^5.0.2
 
   # UI
   cupertino_icons: ^1.0.6
@@ -66,7 +67,7 @@ dependencies:
   firebase_messaging: 15.0.2
   flutter_local_notifications: ^17.2.1
   flutter_secure_storage: ^4.2.1
-  easy_engine: ^0.0.3
+  easy_engine: ^0.0.4
   flutter_facebook_auth: ^6.0.4
 
 dev_dependencies:
