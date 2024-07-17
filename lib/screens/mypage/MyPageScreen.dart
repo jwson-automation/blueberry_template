@@ -60,62 +60,57 @@ class MyPageScreen extends ConsumerWidget {
                   builder: (context) => const FixSettingAccountManager(),
                 ));
               },
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.person),
                 title: Text(
                   "관리",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
             const CustomDivider(),
             GestureDetector(
               onTap: () {},
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.card_membership),
                 title: Text(
                   "결제 정보",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
             const CustomDivider(),
             GestureDetector(
               onTap: () {},
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.alarm_add_outlined),
                 title: Text(
                   "알림",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
             const CustomDivider(),
             GestureDetector(
               onTap: () {},
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.lock),
                 title: Text(
                   "개인 / 보안",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
             const CustomDivider(),
             GestureDetector(
               onTap: () {},
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.monitor),
                 title: Text(
                   "테마",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
             const CustomDivider(),
             GestureDetector(
@@ -124,14 +119,13 @@ class MyPageScreen extends ConsumerWidget {
                   builder: (context) => const FixSettingCameraMediaPage(),
                 ));
               },
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.chat_bubble_outline),
                 title: Text(
                   "채팅 / 미디어",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
             const SizedBox(
               height: 30,
@@ -143,14 +137,13 @@ class MyPageScreen extends ConsumerWidget {
                   return const SettingPage();
                 }));
               },
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.notifications),
                 title: Text(
                   "설정",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
             const CustomDivider(),
 
@@ -159,14 +152,13 @@ class MyPageScreen extends ConsumerWidget {
               onTap: () {
                 ref.read(firebaseAuthServiceProvider).signOut();
               },
-              child: const Expanded(
-                  child: ListTile(
+              child: ListTile(
                 leading: Icon(Icons.logout),
                 title: Text(
                   "로그아웃",
                   style: TextStyle(fontSize: 20),
                 ),
-              )),
+              ),
             ),
           ],
         ),
@@ -180,15 +172,28 @@ class MyPageScreen extends ConsumerWidget {
       alignment: Alignment.center,
       children: [
         profileImage.when(
-            data: (imageUrl) => CircleAvatar(
-                  radius: 50,
-                  backgroundImage: NetworkImage(imageUrl),
-                ),
-            loading: () => const CircularProgressIndicator(),
-            error: (e, s) => CircleAvatar(
+          data: (imageUrl) => Container(
+            width: 100,
+            height: 100,
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(shape: BoxShape.circle),
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (context, _, __) {
+                return CircleAvatar(
                   radius: 50,
                   backgroundColor: Colors.grey.shade300,
-                )),
+                );
+              },
+            ),
+          ),
+          loading: () => const CircularProgressIndicator(),
+          error: (e, s) => CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.grey.shade300,
+          ),
+        ),
         Positioned(
           right: 0,
           bottom: 0,
@@ -235,41 +240,42 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
   return IconButton(
-      onPressed: () async {
-        try {
-          var imageUrl = '';
+    onPressed: () async {
+      try {
+        var imageUrl = '';
 
-          if (kIsWeb) {
-            final ImagePicker picker = ImagePicker();
-            final XFile? image =
-                await picker.pickImage(source: ImageSource.gallery);
+        if (kIsWeb) {
+          final ImagePicker _picker = ImagePicker();
+          final XFile? image =
+              await _picker.pickImage(source: ImageSource.gallery);
 
-            image?.readAsBytes().then((value) async {
-              imageUrl = await firebaseStorageService.uploadImageFromWeb(
-                  value, ImageType.profileimage,
-                  fixedFileName: userId);
+          image?.readAsBytes().then((value) async {
+            imageUrl = await firebaseStorageService.uploadImageFromWeb(
+                value, ImageType.profileimage,
+                fixedFileName: _userId);
 
-              firestoreService.createProfileIamge(userId, imageUrl);
-            });
+            firestoreService.createProfileIamge(_userId, imageUrl);
+          });
+        }
+        if (!kIsWeb) {
+          final pickedFile =
+              await ImagePicker().pickImage(source: ImageSource.gallery);
+          if (pickedFile != null) {
+            // 선택된 이미지를 Firebase Storage에 업로드
+            imageUrl = await firebaseStorageService.uploadImageFromApp(
+                File(pickedFile.path), ImageType.profileimage,
+                fixedFileName: _userId);
+
+            firestoreService.createProfileIamge(_userId, imageUrl);
           }
-          if (!kIsWeb) {
-            final pickedFile =
-                await ImagePicker().pickImage(source: ImageSource.gallery);
-            if (pickedFile != null) {
-              // 선택된 이미지를 Firebase Storage에 업로드
-              imageUrl = await firebaseStorageService.uploadImageFromApp(
-                  File(pickedFile.path), ImageType.profileimage,
-                  fixedFileName: userId);
-
-              firestoreService.createProfileIamge(userId, imageUrl);
-            }
-          }
-          if (imageUrl != '') {
-            print('Banner created successfully');
-          } else {
-            throw Exception('Cancel to upload image');
-          }
-        } catch (e) {}
-      },
-      icon: const Icon(Icons.settings));
+        }
+        if (imageUrl != '') {
+          print('Banner created successfully');
+        } else {
+          throw Exception('Cancel to upload image');
+        }
+      } catch (e) {}
+    },
+    icon: Icon(Icons.settings),
+  );
 }
