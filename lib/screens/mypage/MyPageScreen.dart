@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:blueberry_flutter_template/screens/mypage/camera/setting_inside_account_manager.dart';
 import 'package:blueberry_flutter_template/screens/mypage/camera/setting_inside_camera_media.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:easy_engine/easy_engine.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -164,6 +166,49 @@ class MyPageScreen extends ConsumerWidget {
                 leading: Icon(Icons.logout),
                 title: Text(
                   "로그아웃",
+                  style: TextStyle(fontSize: 20),
+                ),
+              )),
+            ),
+
+            //Logout button
+            GestureDetector(
+              onTap: () async {
+                try {
+                  final re = await engine.deleteAccount();
+                  debugPrint(re.toString());
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('회원탈퇴가 완료되었습니다.'),
+                      ),
+                    );
+                  }
+                  ref.read(firebaseAuthServiceProvider).signOut();
+                } on FirebaseFunctionsException catch (e) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error: ${e.code}/${e.message}'),
+                      ),
+                    );
+                  }
+                } catch (e) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'Error: $e'), // e.code: internal, e.message: INTERNAL
+                      ),
+                    );
+                  }
+                }
+              },
+              child: const Expanded(
+                  child: ListTile(
+                leading: Icon(Icons.person_off),
+                title: Text(
+                  "회원탈퇴",
                   style: TextStyle(fontSize: 20),
                 ),
               )),
