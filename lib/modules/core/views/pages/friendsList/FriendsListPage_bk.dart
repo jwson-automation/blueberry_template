@@ -6,7 +6,7 @@ import 'GridAItems.dart';
 class FriendsListPage extends StatelessWidget {
   FriendsListPage({super.key});
 
-  // GridAitems 리스트 정의
+  // GridAitems 더미 데이터
   final List<GridAitems> gridAitems = [
     GridAitems(
       image: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -51,7 +51,7 @@ class FriendsListPage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text('Friends List'),
         ),
-        centerTitle: false, // 타이틀을 왼쪽으로 정렬
+        centerTitle: false,
       ),
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -60,7 +60,7 @@ class FriendsListPage extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: GridA(gridAitems: gridAitems), // 여기에 gridAitems 리스트를 전달
+                child: GridA(gridAitems: gridAitems),
               )
             ],
           ),

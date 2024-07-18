@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../pages/freindsList/FriendsListPage.dart';
+import '../pages/friendsList/FriendsListPage.dart';
 import '../chat/ChatPage.dart';
 import '../pages/admin/AdminPage.dart';
 import '../pages/mypage/LoginPage.dart';
