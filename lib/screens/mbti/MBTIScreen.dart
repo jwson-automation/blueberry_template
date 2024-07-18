@@ -1,4 +1,4 @@
-import 'package:blueberry_flutter_template/widgets/mbti/MBTIMyWidget.dart';
+import 'package:blueberry_flutter_template/widgets/mbti/MBTIHomeWidget.dart';
 import 'package:flutter/material.dart';
 
 class MBTIScreen extends StatelessWidget {

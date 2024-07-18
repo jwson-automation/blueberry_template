@@ -1,10 +1,9 @@
 import 'package:blueberry_flutter_template/model/MBTIQuestionModel.dart';
 import 'package:blueberry_flutter_template/providers/MBTIProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MBTIQuestionWidget extends ConsumerWidget {
+class MBTITestWidget extends ConsumerWidget {
   final pageController = PageController();
 
   // TODO: 텍스트 리소스 관리
@@ -12,12 +11,12 @@ class MBTIQuestionWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _mbtiList = ref.watch(mbtiQuestionProvider);
-    return _mbtiList.when(
+    final mbtiList = ref.watch(mbtiQuestionProvider);
+    return mbtiList.when(
         data: (data) => Column(
               children: [
                 Expanded(child: _buildPageView(pageController, data)),
-                _buildListView(pageController, _list),
+                _buildListView(pageController, ref, _list, data),
               ],
             ),
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -43,7 +42,7 @@ Widget _buildPageView(
               questions[index].imageUrl,
               width: double.infinity,
               height: 300,
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             )
           ],
         ),
@@ -52,20 +51,32 @@ Widget _buildPageView(
   );
 }
 
-Widget _buildListView(PageController pageController, List<String> data) {
+Widget _buildListView(PageController pageController, WidgetRef ref,
+    List<String> buttonText, List<MBTIQuestionModel> data) {
   return ListView.builder(
     shrinkWrap: true,
-    itemCount: data.length,
+    itemCount: buttonText.length,
     itemBuilder: (BuildContext context, int index) {
       return ListTile(
         title: TextButton(
           onPressed: () {
-            pageController.nextPage(
-              duration: const Duration(microseconds: 1000000),
-              curve: Curves.decelerate,
-            );
+            // 페이지 전환 중 버튼 입력 차단
+            if (pageController.page != pageController.page?.ceilToDouble()) {
+              return;
+            }
+            ref.read(mbtiProvider.notifier).updateScore(
+                data[pageController.page!.toInt()].type, 2 - index);
+            if (pageController.page == data.length - 1) {
+              ref.read(mbtiProvider.notifier).setMBTI();
+              Navigator.pop(context);
+            } else {
+              pageController.nextPage(
+                duration: const Duration(microseconds: 1000000),
+                curve: Curves.decelerate,
+              );
+            }
           },
-          child: Text(style: const TextStyle(fontSize: 20), data[index]),
+          child: Text(style: const TextStyle(fontSize: 20), buttonText[index]),
         ),
       );
     },

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/mbti/MBTIQuestionWidget.dart';
+import '../../widgets/mbti/MBTITestWidget.dart';
 
 class MBTITestScreen extends StatelessWidget {
   const MBTITestScreen({super.key});
@@ -14,7 +14,7 @@ class MBTITestScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(child: MBTIQuestionWidget()),
+              Expanded(child: MBTITestWidget()),
             ],
           ),
         )

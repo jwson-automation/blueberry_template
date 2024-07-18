@@ -10,7 +10,8 @@ class MBTIHomeWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _mbti = ref.watch(mbtiProvider);
+    final mbti = ref.watch(mbtiProvider);
+    final imageUrl = ref.watch(mbtiImageProvider(mbti.name));
 
     return Container(
       padding: const EdgeInsets.all(8.0),
@@ -20,22 +21,30 @@ class MBTIHomeWidget extends ConsumerWidget {
           Text(
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 24),
-              _mbti != MBTIType.NULL
-                  ? '당신의 MBTI는 ${_mbti.name}'
+              mbti != MBTIType.NULL
+                  ? '당신의 MBTI는 ${mbti.name}'
                   : 'MBTI를 검사해주세요'),
-          Image.network(
-            'gs://blueberrytemplate-2024-summer.appspot.com/mbti-question/mbti-test.webp',
-            height: 300,
+          imageUrl.when(
+            data: (url) {
+              return Center(
+                child: Image.network(url, height: 300),
+              );
+            },
+            loading: () => Center(child: CircularProgressIndicator()),
+            error: (error, stackTrace) => Center(child: Text('Error: $error')),
           ),
           TextButton(
-              onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MBTITestScreen()),
-                  ),
+              onPressed: () => {
+                    ref.read(mbtiProvider.notifier).initScore(),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MBTITestScreen()),
+                    )
+                  },
               child: Text(
                   style: const TextStyle(fontSize: 24),
-                  _mbti != MBTIType.NULL ? '재검사 하기' : '검사하기'))
+                  mbti != MBTIType.NULL ? '재검사 하기' : '검사하기'))
         ],
       ),
     );
