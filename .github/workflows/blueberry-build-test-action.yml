@@ -1,0 +1,38 @@
+name: blueberry-build-test-action
+
+on: [ push ]
+
+jobs:
+  test:
+    name: Run Flutter Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Decode firebase_option
+        env:
+          firebase_options_dart: ${{secrets.FIREBASE_OPTION}}
+        run: echo "$firebase_options_dart" > lib/firebase_options.dart
+
+      - name: 'Set Flutter Version Latest'
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+
+      - name: 'Checkout Flutter 3.22.0'
+        shell: bash
+        run: |
+          cd $FLUTTER_ROOT;
+          git fetch --tags;
+          git checkout 3.22.0;
+          flutter --version;
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+        env:
+          CI: true
