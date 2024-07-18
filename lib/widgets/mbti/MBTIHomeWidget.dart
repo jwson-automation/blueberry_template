@@ -1,6 +1,8 @@
 import 'package:blueberry_flutter_template/model/MBTIModel.dart';
 import 'package:blueberry_flutter_template/providers/MBTIProvider.dart';
 import 'package:blueberry_flutter_template/screens/mbti/MBTITestScreen.dart';
+import 'package:blueberry_flutter_template/utils/AppStringEnglish.dart';
+import 'package:blueberry_flutter_template/utils/AppStrings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,8 +24,8 @@ class MBTIHomeWidget extends ConsumerWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 24),
               mbti != MBTIType.NULL
-                  ? '당신의 MBTI는 ${mbti.name}'
-                  : 'MBTI를 검사해주세요'),
+                  ? '${AppStrings.yourMBTIIs} ${mbti.name}'
+                  : AppStrings.pleaseCheckMBTI),
           imageUrl.when(
             data: (url) {
               return Center(
@@ -31,7 +33,7 @@ class MBTIHomeWidget extends ConsumerWidget {
               );
             },
             loading: () => Center(child: CircularProgressIndicator()),
-            error: (error, stackTrace) => Center(child: Text('Error: $error')),
+            error: (error, stackTrace) => Center(child: Text('${AppStringEnglish.errorTitle}: $error')),
           ),
           TextButton(
               onPressed: () => {
@@ -44,7 +46,7 @@ class MBTIHomeWidget extends ConsumerWidget {
                   },
               child: Text(
                   style: const TextStyle(fontSize: 24),
-                  mbti != MBTIType.NULL ? '재검사 하기' : '검사하기'))
+                  mbti != MBTIType.NULL ? AppStrings.reCheckMBTI : AppStrings.checkMBTI))
         ],
       ),
     );

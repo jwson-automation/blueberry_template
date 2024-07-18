@@ -1,5 +1,7 @@
 import 'package:blueberry_flutter_template/model/MBTIQuestionModel.dart';
 import 'package:blueberry_flutter_template/providers/MBTIProvider.dart';
+import 'package:blueberry_flutter_template/utils/AppStringEnglish.dart';
+import 'package:blueberry_flutter_template/utils/AppStrings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,7 +9,13 @@ class MBTITestWidget extends ConsumerWidget {
   final pageController = PageController();
 
   // TODO: 텍스트 리소스 관리
-  final _list = ['매우 그렇다', '그렇다', '보통이다', '아니다', '전혀 아니다'];
+  final _list = [
+    AppStrings.stronglyAgree,
+    AppStrings.agree,
+    AppStrings.neutral,
+    AppStrings.disagree,
+    AppStrings.stronglyDisagree,
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +28,7 @@ class MBTITestWidget extends ConsumerWidget {
               ],
             ),
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stackTrace) => Center(child: Text('Error: $error')));
+        error: (error, stackTrace) => Center(child: Text('${AppStringEnglish.errorTitle}: $error')));
   }
 }
 
