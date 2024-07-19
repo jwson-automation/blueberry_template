@@ -1,4 +1,5 @@
 import 'package:blueberry_flutter_template/screens/chat/ChatScreen.dart';
+import 'package:blueberry_flutter_template/screens/ProfileDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,7 +23,8 @@ class TopScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
-      ChatScreen(),
+      //ChatScreen(),
+      ProfileDetailScreen(),
       MatchScreen(),
       LoginScreen(),
     ];
