@@ -8,8 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class MBTITestWidget extends ConsumerWidget {
   final pageController = PageController();
 
-  // TODO: 텍스트 리소스 관리
-  final _list = [
+  final _buttonTexts = [
     AppStrings.stronglyAgree,
     AppStrings.agree,
     AppStrings.neutral,
@@ -24,7 +23,7 @@ class MBTITestWidget extends ConsumerWidget {
         data: (data) => Column(
               children: [
                 Expanded(child: _buildPageView(pageController, data)),
-                _buildListView(pageController, ref, _list, data),
+                _buildListView(pageController, ref, _buttonTexts, data),
               ],
             ),
         loading: () => const Center(child: CircularProgressIndicator()),

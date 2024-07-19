@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../widgets/mbti/MBTIHomeWidget.dart';
+
 final mbtiProvider = StateNotifierProvider<MBTINotifier, MBTIType>((ref) {
   return MBTINotifier(MBTIType.NULL);
 });
@@ -11,52 +13,47 @@ final mbtiProvider = StateNotifierProvider<MBTINotifier, MBTIType>((ref) {
 class MBTINotifier extends StateNotifier<MBTIType> {
   MBTINotifier(super.state);
 
-  int _eScore = 0;
-  int _sScore = 0;
-  int _tScore = 0;
-  int _jScore = 0;
+  List<int> _mbtiScore = [0, 0, 0, 0];
 
   void initScore() {
-    _eScore = 0;
-    _sScore = 0;
-    _tScore = 0;
-    _jScore = 0;
+    _mbtiScore = [0, 0, 0, 0];
   }
 
   void setMBTI() {
     int type = 0;
-    if (_eScore >= 0) type += 8;
-    if (_sScore >= 0) type += 4;
-    if (_tScore >= 0) type += 2;
-    if (_jScore >= 0) type += 1;
+    if (_mbtiScore[0] >= 0) type += 8;
+    if (_mbtiScore[1] >= 0) type += 4;
+    if (_mbtiScore[2] >= 0) type += 2;
+    if (_mbtiScore[3] >= 0) type += 1;
+
     state = MBTIType.values[type];
   }
 
   void updateScore(String type, int addition) {
     switch (type) {
       case "E":
-        _eScore += addition;
+        _mbtiScore[0] += addition;
         break;
       case "I":
-        _eScore -= addition;
+        _mbtiScore[0] -= addition;
         break;
       case "S":
-        _sScore += addition;
+        _mbtiScore[1] += addition;
         break;
       case "N":
-        _sScore -= addition;
+        _mbtiScore[1] -= addition;
         break;
       case "T":
-        _tScore += addition;
+        _mbtiScore[2] += addition;
         break;
       case "F":
-        _tScore -= addition;
+        _mbtiScore[2] -= addition;
         break;
       case "J":
-        _jScore += addition;
+        _mbtiScore[3] += addition;
         break;
       case "P":
-        _jScore -= addition;
+        _mbtiScore[3] -= addition;
         break;
     }
   }

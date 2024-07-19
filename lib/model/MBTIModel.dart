@@ -1,35 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../widgets/mbti/MBTIHomeWidget.dart';
+
 part 'generated/MBTIModel.freezed.dart';
 part 'generated/MBTIModel.g.dart';
-
-enum MBTIType {
-  INFP,
-  INFJ,
-  INTP,
-  INTJ,
-  ISFP,
-  ISFJ,
-  ISTP,
-  ISTJ,
-  ENFP,
-  ENFJ,
-  ENTP,
-  ENTJ,
-  ESFP,
-  ESFJ,
-  ESTP,
-  ESTJ,
-  NULL
-}
-
-enum Extroversion { E, I }
-
-enum Sensing { S, N }
-
-enum Thinking { T, F }
-
-enum Judging { J, P }
 
 @freezed
 class MBTIModel with _$MBTIModel {

@@ -23,6 +23,7 @@ class MBTIHomeWidget extends ConsumerWidget {
           Text(
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 24),
+              // mbti가 없으면 mbti 보여주기, 있으면 '검사해주세요'
               mbti != MBTIType.NULL
                   ? '${AppStrings.yourMBTIIs} ${mbti.name}'
                   : AppStrings.pleaseCheckMBTI),
@@ -46,9 +47,22 @@ class MBTIHomeWidget extends ConsumerWidget {
                   },
               child: Text(
                   style: const TextStyle(fontSize: 24),
+                  // mbti가 없으면 검사하기, 있으면 재검사하기
                   mbti != MBTIType.NULL ? AppStrings.reCheckMBTI : AppStrings.checkMBTI))
         ],
       ),
     );
   }
 }
+
+enum MBTIType {
+  INFP, INFJ, INTP, INTJ, ISFP, ISFJ, ISTP, ISTJ, ENFP, ENFJ, ENTP, ENTJ, ESFP, ESFJ, ESTP, ESTJ, NULL
+}
+
+enum Extroversion { E, I }
+
+enum Sensing { S, N }
+
+enum Thinking { T, F }
+
+enum Judging { J, P }
