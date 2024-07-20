@@ -61,4 +61,11 @@ class AppStrings {
   static const String companyInfoCenter = '고객 센터';
   static const String companyInfoTerms = '서비스 이용약관';
   static const String companyInfoAbout = '회사 소개';
+
+  // Phone Verification
+  static const String errorMessage_emptyPhoneNumber = '전화번호를 입력해주세요.';
+  static const String errorMessage_invalidPhoneNumber = '전화번호를 확인해주세요.';
+  static const String errorMessage_emptyVerificationCode = '인증번호를 입력해주세요.';
+  static const String errorMessage_invalidVerificationCode = '인증번호를 확인해주세요.';
+
 }

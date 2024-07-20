@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pinput/pinput.dart';
+import '../../../../utils/AppStrings.dart';
 
 import '../../../providers/signup/PhoneVerificationProvider.dart';
 
@@ -66,7 +67,7 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: const Text('휴대폰 번호를 입력해주세요.'),
+                      content: const Text(AppStrings.errorMessage_emptyPhoneNumber),
                       actions: [
                         TextButton(
                           child: const Text('확인'),
@@ -92,7 +93,7 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: const Text('휴대폰 번호를 확인해주세요.'),
+                      content: const Text(AppStrings.errorMessage_invalidPhoneNumber),
                       actions: [
                         TextButton(
                           child: const Text('확인'),
@@ -172,7 +173,7 @@ class _PhoneVerificationNumberInputPageState
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: const Text('인증번호를 입력해주세요.'),
+                      content: const Text(AppStrings.errorMessage_emptyVerificationCode),
                       actions: [
                         TextButton(
                           child: const Text('확인'),
@@ -198,7 +199,7 @@ class _PhoneVerificationNumberInputPageState
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: const Text('인증번호를 확인해주세요.'),
+                      content: const Text(AppStrings.errorMessage_invalidVerificationCode),
                       actions: [
                         TextButton(
                           child: const Text('확인'),
