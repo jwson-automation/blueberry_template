@@ -8,12 +8,14 @@ import '../../../providers/camera/image_quility_provider.dart';
 import 'MyPageProfileImagePreview.dart';
 
 class ProfileGalleryPage extends ConsumerStatefulWidget {
+  const ProfileGalleryPage({super.key});
+
   @override
   _ImageGalleryState createState() => _ImageGalleryState();
 }
 
 class _ImageGalleryState extends ConsumerState<ProfileGalleryPage> {
-  List<AssetEntity> _imageList = [];
+  final List<AssetEntity> _imageList = [];
 
   int _currentPage = 0;
 
@@ -48,7 +50,7 @@ class _ImageGalleryState extends ConsumerState<ProfileGalleryPage> {
       });
     } else {
       SnackBar snackBar = SnackBar(
-        content: Text("앨범 접근 권한을 허용 해주세요"),
+        content: const Text("앨범 접근 권한을 허용 해주세요"),
         action: SnackBarAction(
           label: 'OK',
           onPressed: (){

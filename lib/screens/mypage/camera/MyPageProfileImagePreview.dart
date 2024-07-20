@@ -21,12 +21,12 @@ class SharePostScreen extends ConsumerWidget {
     final profileImage = ref.watch(profileImageStreamProvider);
     final storage = ref.read(fireStorageServiceProvider);
     final fireStorage = ref.read(firebaseStoreServiceProvider);
-    final _userId = FirebaseAuth.instance.currentUser!.uid;
+    final userId = FirebaseAuth.instance.currentUser!.uid;
     final pageNotifier = ref.watch(pageProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('프로필 이미지 편집'),
+        title: const Text('프로필 이미지 편집'),
       ),
       body: Center(
         child: Column(
@@ -47,16 +47,16 @@ class SharePostScreen extends ConsumerWidget {
                   imageFile.readAsBytes().then((value) async {
                     imageUrl = await storage.uploadImageFromApp(
                         File(imageFile.path), ImageType.profileimage,
-                        fixedFileName: _userId);
+                        fixedFileName: userId);
 
-                    fireStorage.createProfileIamge(_userId, imageUrl);
+                    fireStorage.createProfileIamge(userId, imageUrl);
                     pageNotifier.moveToPAge(0);
                   });
                 } catch (e) {
                   print(e);
                 }
               },
-              child: Text('이미지 저장 하기'),
+              child: const Text('이미지 저장 하기'),
             ),
           ],
         ),

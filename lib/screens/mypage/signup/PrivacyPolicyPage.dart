@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-/**
- * PrivacyPolicyPage.dart
- *
- * Privacy Policy Page
- * - 개인정보 처리방침 페이지
- *
- * @jwson-automation
- */
+/// PrivacyPolicyPage.dart
+///
+/// Privacy Policy Page
+/// - 개인정보 처리방침 페이지
+///
+/// @jwson-automation
 
 class PrivacyPolicyPage extends StatefulWidget {
   final VoidCallback onNext;
 
-  PrivacyPolicyPage({required this.onNext});
+  const PrivacyPolicyPage({super.key, required this.onNext});
 
   @override
   State<PrivacyPolicyPage> createState() => _PrivacyPolicyPageState();
@@ -43,7 +41,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('개인정보 처리방침'),
+          title: const Text('개인정보 처리방침'),
         ),
         body: SingleChildScrollView(
           controller: _scrollController,
@@ -53,7 +51,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
             children: [
               Text(
                 getPolicy(),
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ],
           ),
@@ -65,24 +63,24 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
             } else {
               _scrollController.animateTo(
                 _scrollController.position.maxScrollExtent,
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
             }
           },
-          child: Icon(Icons.check),
+          child: const Icon(Icons.check),
         ));
   }
 }
 
 String getPolicy() {
-  final String companyName = "블루베리 스토어";
-  final String name = "손정우";
-  final String phone = "010-8513-6357 / (+81)10-9698-6357";
-  final String email = "sonjungwoo9@gmail.com";
+  const String companyName = "블루베리 스토어";
+  const String name = "손정우";
+  const String phone = "010-8513-6357 / (+81)10-9698-6357";
+  const String email = "sonjungwoo9@gmail.com";
 
   return '''
-"${companyName}"는 (이하 "회사"는) 고객님의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다.회사는 개인정보처리방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
+"$companyName"는 (이하 "회사"는) 고객님의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다.회사는 개인정보처리방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
 
 ■ 수집하는 개인정보 항목 및 수집방법가. 수집하는 개인정보의 항목o 회사는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.- 회원가입시 : 이름 , 생년월일 , 성별 , 로그인ID , 비밀번호 , 휴대전화번호 , 이메일 , 14세미만 가입자의 경우 법정대리인의 정보- 서비스 신청시 : 주소, 결제 정보
 
@@ -106,9 +104,9 @@ o 서비스 이용 과정이나 사업 처리 과정에서 서비스이용기록
 
 ■ 개인정보 자동수집 장치의 설치, 운영 및 그 거부에 관한 사항회사는 귀하의 정보를 수시로 저장하고 찾아내는 "쿠키(cookie)" 등을 운용합니다. 쿠키란 웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터 하드디스크에 저장됩니다.회사은(는) 다음과 같은 목적을 위해 쿠키를 사용합니다.o 쿠키 등 사용 목적1. 회원과 비회원의 접속 빈도나 방문 시간 등을 분석, 이용자의 취향과 관심분야를 파악 및 자취 추적, 각종 이벤트 참여 정도 및 방문 회수 파악 등을 통한 타겟 마케팅 및 개인 맞춤 서비스 제공2. 귀하는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서, 귀하는 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다.o 쿠키 설정 거부 방법1. 쿠키 설정을 거부하는 방법으로는 회원님이 사용하시는 웹 브라우저의 옵션을 선택함으로써 모든 쿠키를 허용하거나 쿠키를 저장할 때마다 확인을 거치거나, 모든 쿠키의 저장을 거부할 수 있습니다.2. 설정방법 예(인터넷 익스플로어의 경우) : 웹 브라우저 상단의 도구 > 인터넷 옵션 > 개인정보3. 단, 귀하께서 쿠키 설치를 거부하였을 경우 서비스 제공에 어려움이 있을 수 있습니다.
 
-■ 개인정보에 관한 민원서비스회사는 고객의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 아래와 같이 관련 부서 및 개인정보보호책임자를 지정하고 있습니다.o 개인정보보호담당자성명 : ${name}소속 : 개인전화번호 : ${phone}이메일 : ${email}
+■ 개인정보에 관한 민원서비스회사는 고객의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 아래와 같이 관련 부서 및 개인정보보호책임자를 지정하고 있습니다.o 개인정보보호담당자성명 : $name소속 : 개인전화번호 : $phone이메일 : $email
 
-o 개인정보보호책임자성명 : ${name} : 개인전화번호 : ${phone}이메일 : ${email}
+o 개인정보보호책임자성명 : $name : 개인전화번호 : $phone이메일 : $email
 
 o 귀하께서는 회사의 서비스를 이용하시며 발생하는 모든 개인정보보호 관련 민원을 개인정보보호책임자 혹은 담당부서로 신고하실 수 있습니다.o 회사는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 드릴 것입니다.o 기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.개인정보침해신고센터 (privacy.kisa.or.kr / 국번 없이 118)개인정보분쟁조정위원회 (kopico.go.kr / 1833-6972)대검찰청 사이버수사과 (spo.go.kr / 지역번호+1301)경찰청 사이버안전국 (cyberbureau.police.go.kr / 국번없이 182)
 

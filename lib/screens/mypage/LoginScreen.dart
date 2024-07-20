@@ -38,8 +38,8 @@ class LoginScreen extends ConsumerWidget {
         data: (user) => user != null
             ? PageView(
                 controller: pageState.pageController,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
                     MyPageScreen(),
                     ProfileCameraPage(),
                     ProfileGalleryPage(),
@@ -100,7 +100,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
             },
           ),
 
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -132,7 +132,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text(AppStrings.errorTitle),
+                            title: const Text(AppStrings.errorTitle),
                             content: Text('에러: $e'),
                             actions: [
                               TextButton(
@@ -157,7 +157,7 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
                   context,
                   MaterialPageRoute(builder: (context) => const SignUpScreen()),
                 ),
-                child: Text(
+                child: const Text(
                   AppStrings.signUpButtonText,
                   style: TextStyle(color: Colors.blue),
                 ),

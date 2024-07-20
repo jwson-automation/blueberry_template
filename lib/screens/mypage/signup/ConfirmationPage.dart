@@ -10,14 +10,14 @@ import '../SignUpScreen.dart';
 
 final signUpProvider = FutureProvider((ref) async {
   // Simulate a network request with a 2-second delay
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 2));
   return true;
 });
 
 class ConfirmationPage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  ConfirmationPage({required this.onNext});
+  const ConfirmationPage({super.key, required this.onNext});
 
   get firebaseAuthServiceProvider => null;
 
@@ -35,33 +35,33 @@ class ConfirmationPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('이메일: ${email.state}'),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text('이름: ${name.state}'),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text('닉네임: ${nickname.state}'),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text('비밀번호: ${password.state}'),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             children: [
               Checkbox(value: true, onChanged: (value) {}),
-              Text('개인정보 처리방침에 동의합니다.'),
+              const Text('개인정보 처리방침에 동의합니다.'),
             ],
           ),
           Row(
             children: [
               Checkbox(value: true, onChanged: (value) {}),
-              Text('이용약관에 동의합니다.'),
+              const Text('이용약관에 동의합니다.'),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           isLoading.when(
             data: (value) => ElevatedButton(
               onPressed:
                   signUp(email.state, password.state, name.state, context, ref),
-              child: Text('가입하기'),
+              child: const Text('가입하기'),
             ),
-            loading: () => CircularProgressIndicator(),
+            loading: () => const CircularProgressIndicator(),
             error: (error, stackTrace) => Text('Error: $error'),
           ),
         ],
@@ -94,7 +94,7 @@ class ConfirmationPage extends ConsumerWidget {
 
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppStrings.signUpSuccessMessage)),
+        const SnackBar(content: Text(AppStrings.signUpSuccessMessage)),
       );
     } catch (e) {
       // 회원가입 실패 시, 에러 메시지 출력

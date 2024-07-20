@@ -5,10 +5,12 @@ import '../../providers/ChatListProvider.dart';
 
 
 class ChatListWidget extends ConsumerWidget {
+  const ChatListWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _list = ref.watch(chatListProvider);
-    return _list.when(
+    final list = ref.watch(chatListProvider);
+    return list.when(
         data: (data) => _buildListView(data),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stackTrace) => Center(child: Text('Error: $error')));

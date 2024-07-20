@@ -22,9 +22,9 @@ class TopScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
-      ChatScreen(),
-      MatchScreen(),
-      LoginScreen(),
+      const ChatScreen(),
+      const MatchScreen(),
+      const LoginScreen(),
     ];
 
     return Scaffold(

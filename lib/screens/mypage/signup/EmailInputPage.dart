@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,7 +53,7 @@ class EmailVerificationError extends EmailVerificationState {
 class EmailInputPage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  EmailInputPage({required this.onNext});
+  const EmailInputPage({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -68,15 +67,15 @@ class EmailInputPage extends ConsumerWidget {
         children: [
           TextField(
             onChanged: (value) => email.state = value,
-            decoration: InputDecoration(labelText: '이메일 입력'),
+            decoration: const InputDecoration(labelText: '이메일 입력'),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () async {
               await emailVerification.sendVerificationCode(email.state);
               onNext();
             },
-            child: Text('인증번호 전송'),
+            child: const Text('인증번호 전송'),
           ),
         ],
       ),
@@ -87,7 +86,7 @@ class EmailInputPage extends ConsumerWidget {
 class EmailVerificationPage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  EmailVerificationPage({required this.onNext});
+  const EmailVerificationPage({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -102,9 +101,9 @@ class EmailVerificationPage extends ConsumerWidget {
         children: [
           TextField(
             onChanged: (value) => verificationCode.state = value,
-            decoration: InputDecoration(labelText: '이메일 코드 입력'),
+            decoration: const InputDecoration(labelText: '이메일 코드 입력'),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               try {
@@ -114,7 +113,7 @@ class EmailVerificationPage extends ConsumerWidget {
                 print(e);
               }
             },
-            child: Text('Next'),
+            child: const Text('Next'),
           ),
         ],
       ),
@@ -124,12 +123,12 @@ class EmailVerificationPage extends ConsumerWidget {
 
 // 예시로 API 호출 메서드를 더미로 구현
 Future<void> sendEmailVerificationCode(String email) async {
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 2));
   // 실제 API 호출 로직이 필요함
 }
 
 Future<void> verifyEmailCode(String email, String code) async {
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 2));
   print("code: $code");
   // 실제 API 호출 로직이 필요함
   if (code != "123456") throw Exception("Invalid code");

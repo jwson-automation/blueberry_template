@@ -1,4 +1,3 @@
-import 'package:blueberry_flutter_template/widgets/CustomDivider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -42,7 +41,7 @@ class _FixSettingNoticeState extends ConsumerState<FixSettingNotice> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("공지 사항"),
+        title: const Text("공지 사항"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -55,7 +54,7 @@ class _FixSettingNoticeState extends ConsumerState<FixSettingNotice> {
                   );
                 }
               },
-              child: ListTile(
+              child: const ListTile(
                 leading: Icon(Icons.speaker_notes),
                 title: Text("블루베리 템플릿 버젼 1.0.0v"),
               ),
@@ -69,7 +68,7 @@ class _FixSettingNoticeState extends ConsumerState<FixSettingNotice> {
                   controller: _webViewController,
               ) : Container()
             ),
-            Divider(),
+            const Divider(),
 
             GestureDetector(
               onTap: (){
@@ -79,7 +78,7 @@ class _FixSettingNoticeState extends ConsumerState<FixSettingNotice> {
                   );
                 }
               },
-              child: ListTile(
+              child: const ListTile(
                 leading: Icon(Icons.speaker_notes),
                 title: Text("블루베리 템플릿 버젼 0.1.0v"),
               ),
