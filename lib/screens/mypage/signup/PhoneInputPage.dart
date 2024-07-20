@@ -5,68 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pinput/pinput.dart';
 
-// 휴대폰인증 provider
-final phoneNumberProvider = StateProvider<String>((ref) => '');
-final verificationCodeProvider = StateProvider<String>((ref) => '');
-final phoneVerificationProvider =
-    NotifierProvider<PhoneVerificationNotifier, PhoneVerificationState>(() {
-  return PhoneVerificationNotifier();
-});
-
-class PhoneVerificationNotifier extends Notifier<PhoneVerificationState> {
-  @override
-  PhoneVerificationState build() {
-    return VerificationInitialize();
-  }
-
-  Future<bool> requestCode(String phoneNumber) async {
-    try {
-      await requestPhoneVerificationCode(phoneNumber);
-      state = VerificationRequest();
-      return true;
-    } catch (e) {
-      state = VerificationError(e.toString());
-      return false;
-    }
-  }
-
-  Future<bool> verifyCode(String phoneNumber, String code) async {
-    try {
-      await verifyPhoneVerificationCode(phoneNumber, code);
-      state = VerificationSuccess();
-      return true;
-    } catch (e) {
-      state = VerificationError(e.toString());
-      return false;
-    }
-  }
-}
-
-// 휴대폰인증 상태관리 클래스
-abstract class PhoneVerificationState {}
-
-class VerificationInitialize extends PhoneVerificationState {
-  final String phoneNumber;
-  final String verificationNumber;
-
-  VerificationInitialize({this.phoneNumber = '', this.verificationNumber = ''});
-}
-
-class VerificationRequest extends PhoneVerificationState {}
-
-class VerificationSuccess extends PhoneVerificationState {}
-
-class VerificationError extends PhoneVerificationState {
-  final String message;
-
-  VerificationError(this.message);
-}
+import '../../../providers/signup/PhoneVerificationProvider.dart';
 
 // A 스크린 ( 휴대폰 입력 )
 class PhoneInputPage extends ConsumerStatefulWidget {
   final VoidCallback onNext;
 
-  const PhoneInputPage({required this.onNext});
+  const PhoneInputPage({super.key, required this.onNext});
 
   @override
   _PhoneInputPageState createState() => _PhoneInputPageState();
@@ -84,8 +29,8 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
 
   @override
   Widget build(BuildContext context) {
-    final phoneNumber = ref.read(phoneNumberProvider.notifier);
-    final phoneVerification = ref.read(phoneVerificationProvider.notifier);
+    final phoneNumber = ref.watch(phoneNumberProvider.notifier);
+    final phoneVerification = ref.watch(phoneVerificationProvider.notifier);
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -93,6 +38,7 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
+            autofocus: true,
             decoration: const InputDecoration(
               labelText: '휴대폰 번호',
               border: OutlineInputBorder(
@@ -100,6 +46,11 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
               ),
             ),
             maxLength: 11,
+            buildCounter: (context,
+                    {required currentLength,
+                    required isFocused,
+                    required maxLength}) =>
+                null,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: TextInputType.number,
             onChanged: (value) => phoneNumber.state = value,
@@ -110,7 +61,7 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
           ElevatedButton(
             onPressed: () async {
               //전화번호 미입력
-              if (ref.read(phoneNumberProvider).isEmpty) {
+              if (phoneNumber.state.isEmpty) {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -130,8 +81,8 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
                 return;
               }
 
-              final result = await phoneVerification
-                  .requestCode(ref.read(phoneNumberProvider));
+              final result =
+                  await phoneVerification.sendPhoneNumber(phoneNumber.state);
 
               //전화번호 입력 성공/실패 처리
               if (result) {
@@ -167,7 +118,7 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
 class PhoneVerificationNumberInputPage extends ConsumerStatefulWidget {
   final VoidCallback onNext;
 
-  PhoneVerificationNumberInputPage({required this.onNext});
+  PhoneVerificationNumberInputPage({super.key, required this.onNext});
 
   @override
   _PhoneVerificationNumberInputPageState createState() =>
@@ -194,9 +145,8 @@ class _PhoneVerificationNumberInputPageState
 
   @override
   Widget build(BuildContext context) {
-    final phoneNumber = ref.read(phoneNumberProvider.notifier);
-    final verificationCode = ref.read(verificationCodeProvider.notifier);
-    final phoneVerification = ref.read(phoneVerificationProvider.notifier);
+    final verificationCode = ref.watch(verificationCodeProvider.notifier);
+    final phoneVerification = ref.watch(phoneVerificationProvider.notifier);
 
     return Padding(
       padding: EdgeInsets.all(16),
@@ -217,7 +167,7 @@ class _PhoneVerificationNumberInputPageState
           ElevatedButton(
             onPressed: () async {
               // 인증번호 미입력
-              if (ref.read(verificationCodeProvider).isEmpty) {
+              if (verificationCode.state.isEmpty) {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -237,8 +187,8 @@ class _PhoneVerificationNumberInputPageState
                 return;
               }
 
-              final result = await phoneVerification.verifyCode(
-                  phoneNumber.state, verificationCode.state);
+              final result =
+                  await phoneVerification.verifyCode(verificationCode.state);
 
               //인증 성공/실패 처리
               if (result) {
@@ -275,7 +225,7 @@ class _PhoneVerificationNumberInputPageState
 class PhoneVerificationDonePage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  const PhoneVerificationDonePage({required this.onNext});
+  const PhoneVerificationDonePage({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext, WidgetRef ref) {
@@ -296,27 +246,4 @@ class PhoneVerificationDonePage extends ConsumerWidget {
       ),
     );
   }
-}
-
-// 휴대폰번호 전송 로직 (구현 필요)
-Future<bool> requestPhoneVerificationCode(String phoneNumber) async {
-  await Future.delayed(Duration(seconds: 1));
-
-  if (phoneNumber.length == 10 || phoneNumber.length == 11) {
-    return true;
-  }
-
-  throw Exception("Invalid phone number");
-}
-
-// 인증번호 전송 로직 (구현 필요)
-Future<bool> verifyPhoneVerificationCode(
-    String phoneNumber, String code) async {
-  await Future.delayed(Duration(seconds: 1));
-
-  if (code == "123456") {
-    return true;
-  }
-
-  throw Exception("Invalid verification code");
 }
