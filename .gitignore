@@ -70,7 +70,7 @@ lib/firebase_options.dart
 /lib/model/generated/
 
 # flutter gen generated files
-/lib/model/generated/
+/lib/gen/
 
 # vscode
 .vscode/launch.json
