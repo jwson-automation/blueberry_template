@@ -14,7 +14,7 @@ class ChatScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Expanded(child: ChatListWidget()),
+            const Expanded(child: ChatListWidget()),
             ChatSendWidget(),
           ],
         ),

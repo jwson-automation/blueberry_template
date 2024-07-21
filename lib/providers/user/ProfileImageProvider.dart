@@ -2,15 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/**
- * ProfileImageProvider.dart
- *
- * Profile Image Provider
- * - 프로필 이미지 데이터를 제공하는 Provider
- * - profileImageUrlStream(): 프로필 이미지 데이터 불러오기
- *
- * @jwson-automation
- */
+/// ProfileImageProvider.dart
+///
+/// Profile Image Provider
+/// - 프로필 이미지 데이터를 제공하는 Provider
+/// - profileImageUrlStream(): 프로필 이미지 데이터 불러오기
+///
+/// @jwson-automation
 Stream<String> profileImageUrlStream() {
   final userId = FirebaseAuth
       .instance.currentUser!.uid; // 안전하게 처리를 위해 non-null assertion 사용

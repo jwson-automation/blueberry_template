@@ -13,7 +13,7 @@ import 'ProfileScreen.dart';
 
 
 final List<DogProfileModel> dogProfiles = [
-  DogProfileModel(
+  const DogProfileModel(
     name: '멍멍이',
     gender: '수컷',
     breed: '골든 리트리버',
@@ -21,7 +21,7 @@ final List<DogProfileModel> dogProfiles = [
     bio: '산책을 좋아하는 활발한 강아지예요!',
     imageUrl: 'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcY8RCd%2FbtsC31gfzPL%2FbSnADONPu66xPesaWHmW00%2Fimg.jpg',
   ),
-  DogProfileModel(
+  const DogProfileModel(
     name: '뭉치',
     gender: '암컷',
     breed: '푸들',
@@ -29,7 +29,7 @@ final List<DogProfileModel> dogProfiles = [
     bio: '애교 많고 사랑스러운 강아지입니다.',
     imageUrl: 'https://image.dongascience.com/Photo/2017/07/14994185580021.jpg',
   ),
-  DogProfileModel(
+  const DogProfileModel(
     name: '초코',
     gender: '수컷',
     breed: '비글',

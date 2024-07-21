@@ -6,7 +6,7 @@ import '../SignUpScreen.dart';
 class PasswordInputPage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  PasswordInputPage({required this.onNext});
+  const PasswordInputPage({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,12 +19,12 @@ class PasswordInputPage extends ConsumerWidget {
         children: [
           TextField(
             onChanged: (value) => password.state = value,
-            decoration: InputDecoration(labelText: '비밀번호 입력'),
+            decoration: const InputDecoration(labelText: '비밀번호 입력'),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: onNext,
-            child: Text('Next'),
+            child: const Text('Next'),
           ),
         ],
       ),
@@ -35,7 +35,7 @@ class PasswordInputPage extends ConsumerWidget {
 class PasswordConfirmPage extends ConsumerWidget {
   final VoidCallback onNext;
 
-  PasswordConfirmPage({required this.onNext});
+  const PasswordConfirmPage({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,12 +49,12 @@ class PasswordConfirmPage extends ConsumerWidget {
         children: [
           TextField(
             onChanged: (value) => passwordConfirm.state = value,
-            decoration: InputDecoration(labelText: '비밀번호 확인'),
+            decoration: const InputDecoration(labelText: '비밀번호 확인'),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: onNext,
-            child: Text('Next'),
+            child: const Text('Next'),
           ),
         ],
       ),

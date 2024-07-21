@@ -1,21 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/**
- * FirebaseAuthServiceProvider.dart
- *
- * Firebase Auth Service Provider
- * - FirebaseAuthService를 제공하는 Provider
- * - FirebaseAuthService: Firebase Auth 인증 서비스
- * - user: 사용자 상태 스트림
- * - signUpWithEmailPassword(): 이메일/비밀번호 회원가입
- * - signInWithEmailPassword(): 이메일/비밀번호 로그인
- * - signOut(): 로그아웃
- * - getCurrentUser(): 현재 로그인한 사용자 가져오기
- * - sendPasswordResetEmail(): 비밀번호 재설정 이메일 보내기
- *
- *  @jwson-automation
- */
+/// FirebaseAuthServiceProvider.dart
+///
+/// Firebase Auth Service Provider
+/// - FirebaseAuthService를 제공하는 Provider
+/// - FirebaseAuthService: Firebase Auth 인증 서비스
+/// - user: 사용자 상태 스트림
+/// - signUpWithEmailPassword(): 이메일/비밀번호 회원가입
+/// - signInWithEmailPassword(): 이메일/비밀번호 로그인
+/// - signOut(): 로그아웃
+/// - getCurrentUser(): 현재 로그인한 사용자 가져오기
+/// - sendPasswordResetEmail(): 비밀번호 재설정 이메일 보내기
+///
+///  @jwson-automation
 
 final firebaseAuthServiceProvider = Provider<FirebaseAuthService>((ref) {
   return FirebaseAuthService(FirebaseAuth.instance);
