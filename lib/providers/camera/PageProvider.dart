@@ -24,9 +24,9 @@ class PageState {
 class PageProviderNotifier extends StateNotifier<PageState> {
   PageProviderNotifier() : super(PageState(pageController: PageController(), pageNumber: 0));
 
-  void moveToPAge(int i, {PageController? pageController}) {
-    state = state.copyWith(pageNumber: i);
-    state.pageController.animateToPage(i, duration: const Duration(microseconds: 300), curve: Curves.easeInOut);
+  void moveToPage(int index, {PageController? pageController}) {
+    state = state.copyWith(pageNumber: index);
+    state.pageController.animateToPage(index, duration: const Duration(microseconds: 300), curve: Curves.easeInOut);
   }
 }
 

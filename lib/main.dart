@@ -48,9 +48,9 @@ class MyApp extends StatelessWidget {
             // 플랫폼에 따른 초기 화면 설정(web은 스플래쉬스크린 없음)
             home: kIsWeb
                 ? ResponsiveLayoutBuilder(
-                    context,
-                    const TopScreen(),
-                  )
+              context,
+              const TopScreen(),
+            )
                 : const SplashScreen(),
           );
         },

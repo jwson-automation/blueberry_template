@@ -265,7 +265,7 @@ class MyPageScreen extends ConsumerWidget {
                         builder: (context) {
                           return Padding(
                             padding: MediaQuery.of(context).viewInsets,
-                            child: SizedBox(
+                            child: const SizedBox(
                               height: 150,
                               child: SettingsBottomSheet(),
                             ),
@@ -324,3 +324,4 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
     icon: const Icon(Icons.settings),
   );
 }
+

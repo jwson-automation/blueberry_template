@@ -61,6 +61,10 @@ Firestore Database > 데이터베이스 만들기 > 테스트 모드에서 시�
 Storage > 시작하기 > 테스트 모드에서 시작
 ```
 
+6. Freezed 파일과 Gen 파일을 생성해주세요.
+- `flutter pub run build_runner build --delete-conflicting-outputs` 커맨드를 터미널에 입력합니다.
+- `fluttergen` 커맨드를 터미널에 입력합니다.
+
 ## 참고
 웹 빌드시에는 렌더러를 사용해야 합니다.
 WEB IMAGE RENDERING (https://docs.flutter.dev/development/platform-integration/web/renderers)
