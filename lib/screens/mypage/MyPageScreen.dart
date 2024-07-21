@@ -14,8 +14,8 @@ import '../../providers/camera/FirebaseStoreServiceProvider.dart';
 import '../../providers/camera/fireStorageServiceProvider.dart';
 import '../../providers/user/FirebaseAuthServiceProvider.dart';
 import '../../providers/user/ProfileImageProvider.dart';
-import '../../widgets/CustomDivider.dart';
-import '../SettingPage.dart';
+import '../../widgets/CustomDividerWidget.dart';
+import '../SettingScreen.dart';
 import 'camera/SettingsBottomSheet.dart';
 
 class MyPageScreen extends ConsumerWidget {
@@ -55,7 +55,7 @@ class MyPageScreen extends ConsumerWidget {
             const SizedBox(
               height: 40,
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -70,7 +70,7 @@ class MyPageScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
             GestureDetector(
               onTap: () {},
               child: const ListTile(
@@ -81,7 +81,7 @@ class MyPageScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
             GestureDetector(
               onTap: () {},
               child: const ListTile(
@@ -92,7 +92,7 @@ class MyPageScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
             GestureDetector(
               onTap: () {},
               child: const ListTile(
@@ -103,7 +103,7 @@ class MyPageScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
             GestureDetector(
               onTap: () {},
               child: const ListTile(
@@ -114,7 +114,7 @@ class MyPageScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -132,11 +132,11 @@ class MyPageScreen extends ConsumerWidget {
             const SizedBox(
               height: 30,
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
             GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const SettingPage();
+                  return const SettingScreen();
                 }));
               },
               child: const ListTile(
@@ -147,7 +147,7 @@ class MyPageScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            const CustomDivider(),
+            const CustomDividerWidget(),
 
             //Logout button
             GestureDetector(

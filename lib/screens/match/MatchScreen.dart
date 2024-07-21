@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 
 import '../../model/DogProfileModel.dart';
-import '../../widgets/match/SwiperCard.dart';
+import '../../widgets/match/SwiperCardWidget.dart';
 import 'ProfileScreen.dart';
 
 ///  MatchPage - 프로필 스와이프 매칭 화면
@@ -48,7 +48,7 @@ class MatchScreen extends StatefulWidget {
 
 class _MatchScreenState extends State<MatchScreen> {
   final CardSwiperController controller = CardSwiperController();
-  final cards = dogProfiles.map(SwiperCard.new).toList();
+  final cards = dogProfiles.map(SwiperCardWidget.new).toList();
 
   @override
   void dispose() {

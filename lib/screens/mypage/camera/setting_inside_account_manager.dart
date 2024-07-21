@@ -1,4 +1,4 @@
-import 'package:blueberry_flutter_template/widgets/MiniAvatar.dart';
+import 'package:blueberry_flutter_template/widgets/MiniAvatarWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
