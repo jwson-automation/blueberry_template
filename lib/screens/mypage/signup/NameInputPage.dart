@@ -3,6 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../SignUpScreen.dart';
 
+class NameInputScreen extends StatelessWidget {
+  final VoidCallback onNext;
+  const NameInputScreen({super.key, required this.onNext});
+
+  @override
+  Widget build(BuildContext context) {
+    return NameInputScreen(onNext: onNext);
+  }
+}
+
+
 class NameInputPage extends ConsumerWidget {
   final VoidCallback onNext;
 

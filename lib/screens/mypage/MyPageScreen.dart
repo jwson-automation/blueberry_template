@@ -324,3 +324,4 @@ Widget _uploadProfileImageButtons(FirestoreService firestoreService,
     icon: const Icon(Icons.settings),
   );
 }
+

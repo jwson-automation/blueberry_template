@@ -1,9 +1,11 @@
 import 'package:blueberry_flutter_template/screens/chat/ChatScreen.dart';
+import 'package:blueberry_flutter_template/screens/mbti/MBTIScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'match/MatchScreen.dart';
 import 'mypage/LoginScreen.dart';
+import 'friendsList/FriendsListScreen.dart';
 
 /// TopScreen.dart
 ///
@@ -22,9 +24,11 @@ class TopScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedIndexProvider);
 
     final List<Widget> pages = [
-      const ChatScreen(),
-      const MatchScreen(),
-      const LoginScreen(),
+      FriendsListScreen(),
+      ChatScreen(),
+      MatchScreen(),
+      MBTIScreen(),
+      LoginScreen(),
     ];
 
     return Scaffold(
@@ -39,6 +43,10 @@ class TopScreen extends ConsumerWidget {
         backgroundColor: Colors.blueGrey[100],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: 'Friends',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.chat),
             label: 'Chat',
           ),
@@ -47,13 +55,17 @@ class TopScreen extends ConsumerWidget {
             label: 'match',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.person_search),
+            label: 'mbti',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
             label: 'MyPage',
           ),
         ],
         currentIndex: selectedIndex,
         onTap: (index) =>
-            ref.read(selectedIndexProvider.notifier).state = index,
+        ref.read(selectedIndexProvider.notifier).state = index,
       ),
     );
   }

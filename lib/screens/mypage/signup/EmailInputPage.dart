@@ -1,4 +1,6 @@
 
+
+import 'package:blueberry_flutter_template/providers/user/SignUpEmailDuplicationProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -52,6 +54,7 @@ class EmailVerificationError extends EmailVerificationState {
 
 class EmailInputPage extends ConsumerWidget {
   final VoidCallback onNext;
+  final TextEditingController _emailController = TextEditingController();
 
   const EmailInputPage({super.key, required this.onNext});
 
@@ -59,6 +62,7 @@ class EmailInputPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final email = ref.read(emailProvider.notifier);
     final emailVerification = ref.read(emailVerificationProvider.notifier);
+    final emailDuplicate = ref.watch(emailDuplicateProvider.notifier);
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -66,10 +70,26 @@ class EmailInputPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
+            controller: _emailController,
             onChanged: (value) => email.state = value,
             decoration: const InputDecoration(labelText: '이메일 입력'),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
+          ElevatedButton(onPressed: () async {
+            String email = _emailController.text;
+            bool isDuplicate = await emailDuplicate.isDuplication(email);
+            if (isDuplicate) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('중복된 이메일입니다.')),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('사용 가능한 이메일입니다.')),
+              );
+            }
+          }, child: Text('중복 확인')
+          ),
+          SizedBox(height: 20),
           ElevatedButton(
             onPressed: () async {
               await emailVerification.sendVerificationCode(email.state);

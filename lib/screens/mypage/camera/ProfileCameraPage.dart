@@ -7,7 +7,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../providers/camera/camera_provider.dart';
-import '../../../providers/camera/page_provider.dart';
+import '../../../providers/camera/PageProvider.dart';
 import 'CameraShadow.dart';
 import 'MyPageProfileImagePreview.dart';
 
@@ -41,7 +41,7 @@ class _TakePhotoState extends ConsumerState<ProfileCameraPage> {
         title: const Text('Take Photo'),
         leading: IconButton(
           onPressed: () {
-            pageNotifier.moveToPAge(0);
+            pageNotifier.moveToPage(0);
           },
           icon: const Icon(Icons.arrow_back),
         ),
