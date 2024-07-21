@@ -25,10 +25,10 @@ class TopScreen extends ConsumerWidget {
 
     final List<Widget> pages = [
       FriendsListScreen(),
-      ChatScreen(),
-      MatchScreen(),
-      MBTIScreen(),
-      LoginScreen(),
+      const ChatScreen(),
+      const MatchScreen(),
+      const MBTIScreen(),
+      const LoginScreen(),
     ];
 
     return Scaffold(
