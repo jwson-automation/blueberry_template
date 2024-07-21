@@ -67,7 +67,7 @@ lib/firebase_options.dart
 .metadata
 
 # freezed generated files
-lib/models/generated/*.dart
+/lib/model/generated/
 
 # vscode
 .vscode/launch.json
