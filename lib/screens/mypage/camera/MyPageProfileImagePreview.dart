@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../providers/camera/FirebaseStoreServiceProvider.dart';
 import '../../../providers/camera/fireStorageServiceProvider.dart';
-import '../../../providers/camera/page_provider.dart';
+import '../../../providers/camera/PageProvider.dart';
 import '../../../providers/user/ProfileImageProvider.dart';
 import '../../../providers/user/UserInfoProvider.dart';
 
@@ -50,7 +50,7 @@ class SharePostScreen extends ConsumerWidget {
                         fixedFileName: _userId);
 
                     fireStorage.createProfileIamge(_userId, imageUrl);
-                    pageNotifier.moveToPAge(0);
+                    pageNotifier.moveToPage(0);
                   });
                 } catch (e) {
                   print(e);

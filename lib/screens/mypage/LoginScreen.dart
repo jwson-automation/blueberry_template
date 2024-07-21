@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../providers/camera/page_provider.dart';
+import '../../providers/camera/PageProvider.dart';
 import '../../providers/user/FirebaseAuthServiceProvider.dart';
 import '../../providers/user/UserInfoProvider.dart';
 import '../../services/SocialAuthService.dart';

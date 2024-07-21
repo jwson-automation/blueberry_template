@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../providers/camera/page_provider.dart';
+import '../../../providers/camera/PageProvider.dart';
 
 class SettingsBottomSheet extends ConsumerStatefulWidget {
   SettingsBottomSheet({super.key});
@@ -53,7 +53,7 @@ class _SettingsBottomSheetState extends ConsumerState<SettingsBottomSheet> {
         ),
         TextButton(
           onPressed: () async {
-            pageNotifier.moveToPAge(1);
+            pageNotifier.moveToPage(1);
             Navigator.pop(context);
           },
           child: Text("직접 촬영 하기"),
@@ -62,10 +62,10 @@ class _SettingsBottomSheetState extends ConsumerState<SettingsBottomSheet> {
           onPressed: () async {
             bool hasPermission = await _requestAlbumPermission();
             if (hasPermission) {
-              pageNotifier.moveToPAge(2);
+              pageNotifier.moveToPage(2);
               Navigator.pop(context);
             } else {
-              pageNotifier.moveToPAge(0);
+              pageNotifier.moveToPage(0);
               Navigator.pop(context);
             }
           },
