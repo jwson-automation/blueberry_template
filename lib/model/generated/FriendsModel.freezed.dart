@@ -25,12 +25,8 @@ mixin _$FriendsModel {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
-  /// Serializes this FriendsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FriendsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FriendsModelCopyWith<FriendsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,8 +50,6 @@ class _$FriendsModelCopyWithImpl<$Res, $Val extends FriendsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FriendsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -104,8 +98,6 @@ class __$$FriendsModelImplCopyWithImpl<$Res>
       _$FriendsModelImpl _value, $Res Function(_$FriendsModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FriendsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -174,14 +166,12 @@ class _$FriendsModelImpl implements _FriendsModel {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, userId, friendId, status, createdAt);
 
-  /// Create a copy of FriendsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FriendsModelImplCopyWith<_$FriendsModelImpl> get copyWith =>
@@ -213,11 +203,8 @@ abstract class _FriendsModel implements FriendsModel {
   String get status;
   @override
   DateTime get createdAt;
-
-  /// Create a copy of FriendsModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FriendsModelImplCopyWith<_$FriendsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
