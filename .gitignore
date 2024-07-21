@@ -66,5 +66,8 @@ lib/firebase_options.dart
 # Ignore metadata
 .metadata
 
+# freezed generated files
+lib/models/generated/*.dart
+
 # vscode
 .vscode/launch.json
