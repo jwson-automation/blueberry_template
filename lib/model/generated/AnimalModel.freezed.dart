@@ -30,12 +30,8 @@ mixin _$AnimalModel {
   String? get profilePicture => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
 
-  /// Serializes this AnimalModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of AnimalModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AnimalModelCopyWith<AnimalModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,8 +64,6 @@ class _$AnimalModelCopyWithImpl<$Res, $Val extends AnimalModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AnimalModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,8 +146,6 @@ class __$$AnimalModelImplCopyWithImpl<$Res>
       _$AnimalModelImpl _value, $Res Function(_$AnimalModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AnimalModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -267,14 +259,12 @@ class _$AnimalModelImpl implements _AnimalModel {
             (identical(other.bio, bio) || other.bio == bio));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, animalId, userId, name, species,
       breed, age, gender, profilePicture, bio);
 
-  /// Create a copy of AnimalModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AnimalModelImplCopyWith<_$AnimalModelImpl> get copyWith =>
@@ -321,11 +311,8 @@ abstract class _AnimalModel implements AnimalModel {
   String? get profilePicture;
   @override
   String? get bio;
-
-  /// Create a copy of AnimalModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AnimalModelImplCopyWith<_$AnimalModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
