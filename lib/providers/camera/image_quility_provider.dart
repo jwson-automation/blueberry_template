@@ -21,7 +21,7 @@ class ImageState {
 
 
 class ImageQualityStateNotifier extends StateNotifier<ImageState> {
-  ImageQualityStateNotifier() : super (ImageState(imageQualityLevel: 0));
+  ImageQualityStateNotifier() : super (ImageState(imageQualityLevel: 100));
 
   void setImageQuality(bool newQuality) {
     state = state.copyWith(

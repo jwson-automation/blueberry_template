@@ -4,15 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../model/UserModel.dart';
 
-/**
- * UserInfoProvider.dart
- *
- * User Info Provider
- * - 사용자 정보 데이터를 제공하는 Provider
- * - fetchUserInfoStream(): 사용자 정보 데이터 불러오기
- *
- * @jwson-automation
- */
+/// UserInfoProvider.dart
+///
+/// User Info Provider
+/// - 사용자 정보 데이터를 제공하는 Provider
+/// - fetchUserInfoStream(): 사용자 정보 데이터 불러오기
+///
+/// @jwson-automation
 
 // 사용자의 인증 상태를 실시간으로 추적
 final loginStateProvider = StreamProvider<User?>((ref) {
@@ -53,7 +51,7 @@ final userInfoNotifierProvider =
 
 // 유저 정보 업데이트를 위한 노티파이어
 class UserNotifier extends StateNotifier<UserModel> {
-  UserNotifier(UserModel state) : super(state);
+  UserNotifier(super.state);
 
   Future<void> updateUser(
       {String? name, int? age, String? profilePicture}) async {

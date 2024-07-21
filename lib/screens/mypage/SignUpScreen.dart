@@ -1,3 +1,4 @@
+import 'package:blueberry_flutter_template/screens/mypage/signup/EmailInputScreen.dart';
 import 'package:blueberry_flutter_template/screens/mypage/signup/PasswordInputPage.dart';
 import 'package:blueberry_flutter_template/screens/mypage/signup/TermsOfServicePage.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          EmailInputPage(
+          EmailInputScreen(
             onNext: () => _pageController.nextPage(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,

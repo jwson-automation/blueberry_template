@@ -30,6 +30,18 @@ class AppStrings {
   static const String signUpSuccessMessage = '회원가입 성공!';
   static const String signUpFailedMessage = '회원가입 실패. 다시 시도해 주세요.';
 
+  //MBTIScreen.dart
+  static const String titleMBTI = 'MBTI';
+  static const String yourMBTIIs = '당신의 MBTI는';
+  static const String pleaseCheckMBTI = 'MBTI를 검사해주세요';
+  static const String reCheckMBTI = '재검사하기';
+  static const String checkMBTI = '검사하기';
+  static const String stronglyAgree = '매우 그렇다';
+  static const String agree= '그렇다';
+  static const String neutral= '보통이다';
+  static const String disagree = '아니다';
+  static const String stronglyDisagree = '전혀 아니다';
+
   //AdminScreen.dart
   static const String adminPageTitle = '관리자 페이지';
   static const String tmpUserButtonText = '임시 사용자 생성';
@@ -61,4 +73,11 @@ class AppStrings {
   static const String companyInfoCenter = '고객 센터';
   static const String companyInfoTerms = '서비스 이용약관';
   static const String companyInfoAbout = '회사 소개';
+
+  // Phone Verification
+  static const String errorMessage_emptyPhoneNumber = '전화번호를 입력해주세요.';
+  static const String errorMessage_invalidPhoneNumber = '전화번호를 확인해주세요.';
+  static const String errorMessage_emptyVerificationCode = '인증번호를 입력해주세요.';
+  static const String errorMessage_invalidVerificationCode = '인증번호를 확인해주세요.';
+
 }

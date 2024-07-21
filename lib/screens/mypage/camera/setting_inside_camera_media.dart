@@ -23,8 +23,8 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
             },
             child: Expanded(
                 child: ListTile(
-              leading: Icon(Icons.photo_camera_front_outlined),
-              title: Text(
+              leading: const Icon(Icons.photo_camera_front_outlined),
+              title: const Text(
                 "카메라 화질 설정",
                 style: TextStyle(fontSize: 20),
               ),
@@ -41,8 +41,8 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
             },
             child: Expanded(
                 child: ListTile(
-              leading: Icon(Icons.photo_camera_front_outlined),
-              title: Text(
+              leading: const Icon(Icons.photo_camera_front_outlined),
+              title: const Text(
                 "이미지 화질 설정",
                 style: TextStyle(fontSize: 20),
               ),
@@ -64,7 +64,7 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
         builder: (context) {
           return Padding(
             padding: MediaQuery.of(context).viewInsets,
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               height: 150,
               child: Column(
@@ -76,7 +76,7 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
                     },
                     child: const Text("일반화질"),
                   ),
-                  Divider(),
+                  const Divider(),
                   TextButton(
                       onPressed: () {
                         ref.read(cameraProvider.notifier).setQuality(true);
@@ -97,7 +97,7 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
         builder: (context) {
           return Padding(
             padding: MediaQuery.of(context).viewInsets,
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               height: 150,
               child: Column(
@@ -111,7 +111,7 @@ class FixSettingCameraMediaPage extends ConsumerWidget {
                     },
                     child: const Text("일반화질"),
                   ),
-                  Divider(),
+                  const Divider(),
                   TextButton(
                       onPressed: () {
                         ref

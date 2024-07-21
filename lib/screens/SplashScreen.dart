@@ -11,7 +11,7 @@ import '../utils/ResponsiveLayoutBuilder.dart';
 /// 내용: 앱 초기화와 필수 자원 로딩을 관리하는 스플래쉬 스크린 구현
 
 class SplashScreen extends ConsumerStatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   _SplashScreenState createState() => _SplashScreenState();

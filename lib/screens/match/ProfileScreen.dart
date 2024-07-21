@@ -30,14 +30,14 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   Text(
                     dogProfile.name,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text('성별: ${dogProfile.gender}'),
                   Text('종족: ${dogProfile.breed}'),
                   Text('사는 곳: ${dogProfile.location}'),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     '소개',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
