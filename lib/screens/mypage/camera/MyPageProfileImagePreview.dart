@@ -48,7 +48,7 @@ class SharePostScreen extends ConsumerWidget {
                     imageUrl = await storage.uploadImageFromApp(
                         File(imageFile.path), ImageType.profileimage,
                         fixedFileName: userId);
-                    fireStorage.createProfileIamge(_userId, imageUrl);
+                    fireStorage.createProfileIamge(userId, imageUrl);
                     pageNotifier.moveToPage(0);
                   });
                 } catch (e) {

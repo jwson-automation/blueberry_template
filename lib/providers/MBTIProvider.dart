@@ -1,4 +1,3 @@
-import 'package:blueberry_flutter_template/model/MBTIModel.dart';
 import 'package:blueberry_flutter_template/model/MBTIQuestionModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';

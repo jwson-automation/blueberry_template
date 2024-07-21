@@ -1,10 +1,8 @@
-import 'package:blueberry_flutter_template/model/MBTIModel.dart';
 import 'package:blueberry_flutter_template/providers/MBTIProvider.dart';
 import 'package:blueberry_flutter_template/screens/mbti/MBTITestScreen.dart';
 import 'package:blueberry_flutter_template/utils/AppStringEnglish.dart';
 import 'package:blueberry_flutter_template/utils/AppStrings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MBTIHomeWidget extends ConsumerWidget {
@@ -33,7 +31,7 @@ class MBTIHomeWidget extends ConsumerWidget {
                 child: Image.network(url, height: 300),
               );
             },
-            loading: () => Center(child: CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
             error: (error, stackTrace) => Center(child: Text('${AppStringEnglish.errorTitle}: $error')),
           ),
           TextButton(
