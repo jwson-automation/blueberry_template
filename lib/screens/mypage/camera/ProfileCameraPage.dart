@@ -7,7 +7,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../providers/camera/camera_provider.dart';
-import '../../../providers/camera/page_provider.dart';
+import '../../../providers/camera/PageProvider.dart';
 import 'CameraShadow.dart';
 import 'MyPageProfileImagePreview.dart';
 
@@ -38,12 +38,12 @@ class _TakePhotoState extends ConsumerState<ProfileCameraPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Take Photo'),
+        title: const Text('Take Photo'),
         leading: IconButton(
           onPressed: () {
-            pageNotifier.moveToPAge(0);
+            pageNotifier.moveToPage(0);
           },
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
         ),
       ),
       body: Column(
@@ -72,7 +72,7 @@ class _TakePhotoState extends ConsumerState<ProfileCameraPage> {
                         print("A");
                       }
                     },
-                    icon: Icon(Icons.change_circle),
+                    icon: const Icon(Icons.change_circle),
                   ))
             ],
           ),
@@ -127,7 +127,7 @@ class _TakePhotoState extends ConsumerState<ProfileCameraPage> {
         child: FittedBox(
           fit: BoxFit.fitWidth,
           child: Stack(children: [
-            Container(
+            SizedBox(
               width: size.width,
               height: size.width * 1.2,
               child: CameraPreview(controller),
@@ -151,7 +151,7 @@ class _TakePhotoState extends ConsumerState<ProfileCameraPage> {
     return Center(
       child: Text(
         message,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: const TextStyle(color: Colors.white, fontSize: 16),
         textAlign: TextAlign.center,
       ),
     );

@@ -65,3 +65,6 @@ lib/firebase_options.dart
 
 # Ignore metadata
 .metadata
+
+# vscode
+.vscode/launch.json

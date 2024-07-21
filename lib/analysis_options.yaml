@@ -1,0 +1,31 @@
+include: package:flutter_lints/flutter.yaml  # 기본 flutter_lints 규칙 포함
+
+linter:
+rules:
+avoid_print: true  # print() 함수 사용을 피함
+avoid_unused_constructor_parameters: true  # 사용되지 않는 생성자 매개변수를 피함
+camel_case_types: true  # 타입 이름을 camelCase로 작성
+constant_identifier_names: true  # 상수 식별자를 대문자로 작성
+control_flow_in_finally: true  # finally 블록에서 제어 흐름을 사용하지 않음
+curly_braces_in_flow_control_structures: true  # 제어 구조에서 중괄호 사용
+diagnostic_describe_all_properties: true  # 진단 메시지에서 모든 속성 설명
+directives_ordering: true  # import 및 export 지시문의 순서 정렬
+empty_constructor_bodies: true  # 비어 있는 생성자 본문 피함
+file_names: true  # 파일 이름을 snake_case로 작성
+library_prefixes: true  # 라이브러리 접두사 사용
+lines_longer_than_80_chars: true  # 80자를 초과하는 줄 피함
+list_remove_unrelated_type: true  # List에서 관련 없는 타입 제거
+no_logic_in_create_state: true  # createState에서 로직 사용하지 않음
+non_constant_identifier_names: true  # 식별자를 camelCase로 작성
+prefer_const_constructors: true  # const 생성자 선호
+prefer_final_fields: true  # final 필드 사용 선호
+prefer_is_empty: true  # isEmpty 사용 선호
+prefer_is_not_empty: true  # isNotEmpty 사용 선호
+prefer_typing_uninitialized_variables: true  # 초기화되지 않은 변수에 타입 지정
+public_member_api_docs: true  # 공개 멤버에 대한 문서 작성
+slash_for_doc_comments: true  # 문서 주석에 슬래시 사용
+sort_child_properties_last: true  # 자식 속성을 마지막에 정렬
+unnecessary_brace_in_string_interps: true  # 문자열 보간에서 불필요한 중괄호 사용 피함
+unnecessary_const: true  # 불필요한 const 사용 피함
+unnecessary_new: true  # 불필요한 new 사용 피함
+use_full_hex_values_for_flutter_colors: true  # Flutter 색상에 전체 16진수 값 사용

@@ -1,0 +1,25 @@
+{
+  "dart.analysisExcludedFolders": [
+    "build"
+  ],
+  "dart.lineLength": 80,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "Dart-Code.dart-code"
+  },
+  "files.exclude": {
+    "**/build": true,
+    "**/.dart_tool": true,
+    "**/ios/Flutter/Flutter.framework": true,
+    "**/ios/Flutter/Flutter.podspec": true,
+    "**/ios/Flutter/Flutter.xcworkspace": true,
+    "**/ios/Pods": true,
+    "**/ios/Runner.xcodeproj": true,
+    "**/ios/Runner.xcworkspace": true,
+    "**/.packages": true
+  }
+}
