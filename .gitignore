@@ -71,5 +71,3 @@ lib/models/generated/*.dart
 
 # vscode
 .vscode/launch.json
-
-#
