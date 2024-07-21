@@ -16,6 +16,8 @@ class MBTITestWidget extends ConsumerWidget {
     AppStrings.stronglyDisagree,
   ];
 
+  MBTITestWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mbtiList = ref.watch(mbtiQuestionProvider);

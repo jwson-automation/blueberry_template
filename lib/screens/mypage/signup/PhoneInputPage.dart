@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -119,7 +118,7 @@ class _PhoneInputPageState extends ConsumerState<PhoneInputPage> {
 class PhoneVerificationNumberInputPage extends ConsumerStatefulWidget {
   final VoidCallback onNext;
 
-  PhoneVerificationNumberInputPage({super.key, required this.onNext});
+  const PhoneVerificationNumberInputPage({super.key, required this.onNext});
 
   @override
   _PhoneVerificationNumberInputPageState createState() =>
@@ -150,7 +149,7 @@ class _PhoneVerificationNumberInputPageState
     final phoneVerification = ref.watch(phoneVerificationProvider.notifier);
 
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -231,11 +230,11 @@ class PhoneVerificationDonePage extends ConsumerWidget {
   @override
   Widget build(BuildContext, WidgetRef ref) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('휴대폰 인증 완료'),
+          const Text('휴대폰 인증 완료'),
           const SizedBox(
             height: 20,
           ),

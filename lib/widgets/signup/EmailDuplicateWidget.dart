@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class EmailDuplicateWidget extends ConsumerStatefulWidget {
   final VoidCallback onNext;
 
-  EmailDuplicateWidget({required this.onNext});
+  const EmailDuplicateWidget({super.key, required this.onNext});
 
   @override
   _EmailDuplicateWidgetState createState() => _EmailDuplicateWidgetState();
@@ -31,7 +31,7 @@ class _EmailDuplicateWidgetState extends ConsumerState<EmailDuplicateWidget> {
           TextField(
             controller: _emailController,
             onChanged: (value) => email.state = value,
-            decoration: InputDecoration(labelText: '이메일 입력'),
+            decoration: const InputDecoration(labelText: '이메일 입력'),
           ),
           const SizedBox(height: 20),
 
@@ -51,7 +51,7 @@ class _EmailDuplicateWidgetState extends ConsumerState<EmailDuplicateWidget> {
         await emailVerification.sendVerificationCode(email.state);
         widget.onNext();
       },
-      child: Text('인증번호 전송'),
+      child: const Text('인증번호 전송'),
     );
   }
 
@@ -62,21 +62,21 @@ class _EmailDuplicateWidgetState extends ConsumerState<EmailDuplicateWidget> {
         bool isDuplicate = await emailDuplicate.isDuplication(email);
         if (isDuplicate) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('중복된 이메일입니다.')),
+            const SnackBar(content: Text('중복된 이메일입니다.')),
           );
           setState(() {
             isEmailAvailable = false;
           });
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('사용 가능한 이메일입니다.')),
+            const SnackBar(content: Text('사용 가능한 이메일입니다.')),
           );
           setState(() {
             isEmailAvailable = true;
           });
         }
       },
-      child: Text('중복 확인'),
+      child: const Text('중복 확인'),
     );
   }
 }
