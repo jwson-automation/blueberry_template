@@ -6,7 +6,7 @@ import '../../providers/user/FirebaseAuthServiceProvider.dart';
 import '../../providers/user/UserInfoProvider.dart';
 import '../../services/SocialAuthService.dart';
 import '../../utils/AppStrings.dart';
-import '../../widgets/square_title.dart';
+import '../../widgets/SquareTitleWidget.dart';
 import 'MyPageScreen.dart';
 import 'SignUpScreen.dart';
 import 'camera/ProfileCameraPage.dart';
@@ -178,21 +178,21 @@ Widget _buildLogin(BuildContext context, WidgetRef ref) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //Google button
-              SquareTile(
+              SquareTileWidget(
                   onTap: () => AuthService().signInWithGoogle(),
                   imagePath: 'assets/login_page_images/google.png'),
               const SizedBox(
                 width: 10,
               ),
               //Apple button
-              SquareTile(
+              SquareTileWidget(
                   onTap: () => AuthService().signInWithApple(),
                   imagePath: 'assets/login_page_images/apple.png'),
               const SizedBox(
                 width: 10,
               ),
               //github button
-              SquareTile(
+              SquareTileWidget(
                   onTap: () => AuthService().signInWithGithub(),
                   imagePath: 'assets/login_page_images/github.png'),
             ],

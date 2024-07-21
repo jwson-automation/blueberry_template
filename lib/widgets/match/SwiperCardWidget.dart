@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../model/DogProfileModel.dart';
 
-class SwiperCard extends StatelessWidget {
+class SwiperCardWidget extends StatelessWidget {
   final DogProfileModel dogProfiles;
 
-  const SwiperCard(
+  const SwiperCardWidget(
     this.dogProfiles, {
     super.key,
   });

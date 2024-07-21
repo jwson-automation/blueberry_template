@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/NotificationProvider.dart';
 import '../providers/ThemeProvider.dart';
 
-class SettingPage extends ConsumerWidget {
-  const SettingPage({super.key});
+class SettingScreen extends ConsumerWidget {
+  const SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
